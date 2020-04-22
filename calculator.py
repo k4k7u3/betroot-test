@@ -1,3 +1,4 @@
+# 22.04.20 - добавил деление на 0 =)) 
 import random
 import math
 
@@ -308,7 +309,7 @@ while True:
 					continue
 				elif flag1 == 2:
 					print(f'{name}, Вы ввели некоректное число!')
-					continue
+					continue					
 			while True:
 				input_str = input(f'{name}, введите второе число: ')
 				input_str = input_str.strip()
@@ -346,6 +347,9 @@ while True:
 				elif flag1 == 2:
 					print(f'{name}, Вы ввели некоректное число!')
 					continue
+			if y == 0:
+				print(f'{name}, на 0 мы не делим, а умножаем =)) ')
+				continue
 			result = x / y
 			result = round(result, 3)
 			print(f'Вы ввели x = {x} , y = {y}. Результат {x} {operation} {y} =', result)
@@ -426,6 +430,9 @@ while True:
 				elif flag1 == 2:
 					print(f'{name}, Вы ввели некоректное число!')
 					continue
+			if y == 0:
+				print(f'{name}, на 0 мы не делим, а умножаем =)) ')
+				continue
 			result = x // y
 			result = round(result, 3)
 			print(f'Вы ввели x = {x} , y = {y}. Результат {x} {operation} {y} =', result)
@@ -506,6 +513,9 @@ while True:
 				elif flag1 == 2:
 					print(f'{name}, Вы ввели некоректное число!')
 					continue
+			if y == 0:
+				print(f'{name}, на 0 мы не делим, а умножаем =)) ')
+				continue
 			result = x % y
 			result = round(result, 3)
 			print(f'Вы ввели x = {x} , y = {y}. Результат {x} {operation} {y} =', result)
@@ -800,6 +810,9 @@ while True:
 					# continue
 					break
 				elif in_operation == '/':
+					if y == 0:
+						print(f'{name}, на 0 мы не делим, а умножаем =)) ')
+						continue
 					result = x / y
 					result = round(result, 3)
 					print(f'Вы ввели x = {x} , y = {y}. Результат {x} {in_operation} {y} =', result)
@@ -807,6 +820,9 @@ while True:
 					# continue
 					break
 				elif in_operation == '//':
+					if y == 0:
+						print(f'{name}, на 0 мы не делим, а умножаем =)) ')
+						continue
 					result = x // y
 					result = round(result, 3)
 					print(f'Вы ввели x = {x} , y = {y}. Результат {x} {in_operation} {y} =', result)
@@ -814,6 +830,9 @@ while True:
 					# continue
 					break
 				elif in_operation == '%':
+					if y == 0:
+						print(f'{name}, на 0 мы не делим, а умножаем =)) ')
+						continue
 					result = x % y
 					result = round(result, 3)
 					print(f'Вы ввели x = {x} , y = {y}. Результат {x} {in_operation} {y} =', result)
@@ -1051,6 +1070,9 @@ while True:
 				elif flag1 == 2:
 					print(f'{name}, Вы ввели некоректное число!')
 					continue
+			if z == 0:
+				print(f'{name}, на 0 мы не делим, а умножаем =)) ')
+				continue
 			result1 = result
 			result /= z
 			result = round(result, 3)
@@ -1094,6 +1116,9 @@ while True:
 				elif flag1 == 2:
 					print(f'{name}, Вы ввели некоректное число!')
 					continue
+			if z == 0:
+				print(f'{name}, на 0 мы не делим, а умножаем =)) ')
+				continue
 			result1 = result
 			result //= z
 			result = round(result, 3)
@@ -1137,6 +1162,9 @@ while True:
 				elif flag1 == 2:
 					print(f'{name}, Вы ввели некоректное число!')
 					continue
+			if z == 0:
+				print(f'{name}, на 0 мы не делим, а умножаем =)) ')
+				continue
 			result1 = result
 			result %= z
 			result = round(result, 3)
@@ -1270,6 +1298,9 @@ while True:
 					break
 					# continue
 				if in_operation == '/':
+					if y == 0:
+						print(f'{name}, на 0 мы не делим, а умножаем =)) ')
+						continue
 					result1 = result
 					result /= y
 					result = round(result, 3)
@@ -1277,6 +1308,9 @@ while True:
 					break
 					# continue
 				if in_operation == '//':
+					if y == 0:
+						print(f'{name}, на 0 мы не делим, а умножаем =)) ')
+						continue
 					result1 = result
 					result //= y
 					result = round(result, 3)
@@ -1284,6 +1318,9 @@ while True:
 					break
 					# continue
 				if in_operation == '%':
+					if y == 0:
+						print(f'{name}, на 0 мы не делим, а умножаем =)) ')
+						continue
 					result1 = result
 					result %= y
 					result = round(result, 3)

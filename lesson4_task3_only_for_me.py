@@ -1,4 +1,5 @@
 import random
+import math
 
 s = input('Input something: ')
 x = 0
