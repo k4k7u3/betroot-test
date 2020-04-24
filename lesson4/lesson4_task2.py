@@ -8,9 +8,11 @@ i = 0
 while i!= 10:
 	list_1.append(random.randint(1, 10))
 	list_2.append(random.randint(1, 10))
-	if list_1[i] in list_2:
-		if list_1[i] not in list_3:
-			list_3.append(list_1[i])
+	j = i
+	while j >= 0:
+		if list_1[j] in list_2 and list_1[j] not in list_3:
+			list_3.append(list_1[j])
+		j -= 1
 	i += 1
 print(list_1)
 print(list_2)
