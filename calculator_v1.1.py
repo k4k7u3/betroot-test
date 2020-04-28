@@ -171,7 +171,12 @@ while True:
 			flag = 1
 			continue
 		elif operation == operation_sqrt:
-			x = input_chislo()
+			while True:
+				x = input_chislo()
+				if x < 0:
+					print("Мы не извлекаем корень с отрицательного числа! Может кто другой сможет, let's try = ) ")
+					continue
+				break
 			result = round(math.sqrt(x), 3)
 			print(f'Вы ввели x = {x}. Результат {operation}({x}) =', result)
 			flag = 1
@@ -183,7 +188,12 @@ while True:
 			flag = 1
 			continue
 		elif operation == operation_fact:
-			x = input_chislo()
+			while True:
+				x = input_chislo()
+				if x < 0:
+					print('''Мы не находим факториал отрицательного числа! Может кто другой сможет, let's try = ) ''')
+					continue
+				break
 			result = round(math.factorial(x), 3)
 			print(f'Вы ввели x = {x}. Результат {x}! =', result)
 			flag = 1
@@ -441,6 +451,9 @@ while True:
 			print(f'Результат {result1} {operation} {z} =', result)
 			continue
 		elif operation == operation_sqrt:
+			if result < 0:
+				print("Мы не извлекаем корень с отрицательного числа! Может кто другой сможет, let's try = ) ")
+				continue
 			result1 = result
 			result = round(math.sqrt(result), 3)
 			print(f'Результат sqrt({result1}) =', result)
@@ -451,6 +464,9 @@ while True:
 			print(f'Результат abs({result1}) =', result)
 			continue
 		elif operation == operation_fact:
+			if result < 0:
+				print("Мы не находим факториал отрицательного числа Может кто другой сможет, let's try = ) ")
+				continue
 			result1 = result
 			result = round(math.factorial(result), 3)
 			print(f'Результат abs({result1})! =', result)
