@@ -32,6 +32,11 @@ def input_chislo():
 	while True:
 		input_per = input('Введите число: ')
 		input_per = input_per.strip().replace(' ', '')
+		if input_per[0] == '-' and input_per.count('-') == 1:
+			input_per = input_per.replace('-', '')
+			negative_number = 1
+		else:
+			negative_number = 0
 		if input_per.isdigit() == False:
 			if input_per.count('.') == 0 or input_per.count('.') > 1:
 				print('Вы ввели некоректное число!')
@@ -45,9 +50,13 @@ def input_chislo():
 				else:
 					input_per = input_per1
 					input_per = float(input_per)
+					if negative_number == 1:
+						input_per = input_per * -1
 					break
 		else:
 			input_per = int(input_per)
+			if negative_number == 1:
+				input_per = input_per * -1
 			break
 	return input_per
 # Функция для автоматического ввода
@@ -197,7 +206,7 @@ while True:
 					print(f'Вы ввели x = {x} , y = {y}. Результат {x} + {y} =', result)
 					flag = 1
 					break
-				if operation_min in input_per:
+				elif operation_min in input_per:
 					input_per = input_per.split('-')
 					x = input_per[0]
 					y = input_per[1]
@@ -211,7 +220,7 @@ while True:
 					print(f'Вы ввели x = {x} , y = {y}. Результат {x} - {y} =', result)
 					flag = 1
 					break
-				if operation_umn in input_per:
+				elif operation_umn in input_per:
 					input_per = input_per.split('*')
 					x = input_per[0]
 					y = input_per[1]
@@ -225,7 +234,7 @@ while True:
 					print(f'Вы ввели x = {x} , y = {y}. Результат {x} * {y} =', result)
 					flag = 1
 					break
-				if operation_del in input_per:
+				elif operation_del in input_per:
 					input_per = input_per.split('/')
 					x = input_per[0]
 					y = input_per[1]
@@ -242,7 +251,7 @@ while True:
 					print(f'Вы ввели x = {x} , y = {y}. Результат {x} / {y} =', result)
 					flag = 1
 					break
-				if operation_celdel in input_per:
+				elif operation_celdel in input_per:
 					input_per = input_per.split('//')
 					x = input_per[0]
 					y = input_per[1]
@@ -259,7 +268,7 @@ while True:
 					print(f'Вы ввели x = {x} , y = {y}. Результат {x} // {y} =', result)
 					flag = 1
 					break
-				if operation_ostatok in input_per:
+				elif operation_ostatok in input_per:
 					input_per = input_per.split('%')
 					x = input_per[0]
 					y = input_per[1]
@@ -276,7 +285,7 @@ while True:
 					print(f'Вы ввели x = {x} , y = {y}. Результат {x} % {y} =', result)
 					flag = 1
 					break
-				if operation_step in input_per:
+				elif operation_step in input_per:
 					input_per = input_per.split('^')
 					x = input_per[0]
 					y = input_per[1]
@@ -293,7 +302,7 @@ while True:
 					print(f'Вы ввели x = {x} , y = {y}. Результат {x} ^ {y} =', result)
 					flag = 1
 					break
-				if operation_sqrt in input_per:
+				elif operation_sqrt in input_per:
 					input_per = input_per.split('sqrt')
 					x = input_per[0]
 					y = input_per[1]
@@ -313,7 +322,7 @@ while True:
 						print(f'Вы ввели x = {x}. Результат sqrt({x}) =', result)
 						flag = 1
 						break
-				if operation_modul in input_per:
+				elif operation_modul in input_per:
 					input_per = input_per.split('abs')
 					x = input_per[0]
 					y = input_per[1]
@@ -333,7 +342,7 @@ while True:
 						print(f'Вы ввели x = {x}. Результат abs({x}) =', result)
 						flag = 1
 						break
-				if operation_fact in input_per:
+				elif operation_fact in input_per:
 					input_per = input_per.split('!')
 					x = input_per[0]
 					y = input_per[1]
@@ -353,7 +362,7 @@ while True:
 						print(f'Вы ввели x = {x}. Результат ({x})! =', result)
 						flag = 1
 						break
-				if input_per == 'exit':
+				elif input_per == 'exit':
 					break
 	else:
 		operation = input('Ввести дальнейшую операцию или сбросить? (для cброса введите "clear", для описания операций введите "Info", для выхода введите "Exit"): ')
