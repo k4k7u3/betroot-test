@@ -1,8 +1,3 @@
-# v.1.1 
-# Добавить список
-# Добавить все операции которые нужно через переменные в начале
-# добавил отрицательные числа в ручном режиме
-
 import random
 import math
 
@@ -11,8 +6,9 @@ flag = 0
 x = 0    			# Первое вводимое число
 y = 0				# Второе вводимое число
 z = 0				# Третье вводимое число
-input_per = 0		# Переменная для функции
+input_per = ''		# Переменная для функции
 input_operation = []
+per_word = 0
 
 operation_sum = '+'
 operation_min = '-'
@@ -34,7 +30,10 @@ def input_chislo():
 	while True:
 		input_per = input('Введите число: ')
 		input_per = input_per.strip().replace(' ', '')
-		if input_per[0] == '-' and input_per.count('-') == 1:
+		if input_per == '':
+			print('Вы ввели некоректное число!')
+			continue
+		elif input_per[0] == '-' and input_per.count('-') == 1:
 			input_per = input_per.replace('-', '')
 			negative_number = 1
 		else:
@@ -120,6 +119,8 @@ def sort_string(s):
 			number.append(num)
 			num = ''
 			flag1 = 0
+		elif i in list_operation and flag == 0:
+			input_operation.append(i)
 		else:
 			print('Вы ввели неверное число')
 			return None
@@ -131,6 +132,9 @@ name = name.strip().capitalize()
 # Основной цикл
 while True:
 	if flag == 0:
+		input_operation = []
+		input_number = []
+		per_word = 0
 		operation = input(f'{name}, выберите какую операцию Вы хотите произвести (для выхода введите "Exit", для описания операций введите "Info"): ')
 		operation = operation.strip().lower()
 		if operation not in list_operation:
@@ -237,21 +241,48 @@ while True:
 			while True:
 				input_per = input('Введите операцию полностью (для выхода введите "Exit"): ')
 				input_per = input_per.lower().strip().replace(' ', '')
+				if input_per == '':
+					print('Вы ввели некоректное число')
+					continue
+				elif operation_exit in input_per:
+					break
 				if operation_sqrt in input_per:
 					input_operation.append('sqrt')
 					input_per = input_per.replace('sqrt', '')
+					per_word = 1
 				elif operation_modul in input_per:
 					input_operation.append('abs')
 					input_per = input_per.replace('abs', '')
+					per_word = 1
 				elif operation_fact in input_per:
 					input_operation.append('!')
 					input_per = input_per.replace('!', '')
+					per_word = 1
 				elif operation_celdel in input_per:
 					input_operation.append('?')
 					input_per = input_per.replace('//', '?')
-				input_number, input_operation = sort_string(input_per)
+				return_all = sort_string(input_per)
+				if return_all == None:
+					continue
+				input_number, input_operation = return_all
+				if len(input_operation) < 1:
+					print('Вы ввели некоректное число')
+					input_operation = []
+					input_number = []
+					continue
+				elif len(input_number) == 2:
+					if input_number[0] == '' or input_number[1] == '':
+						print('Вы ввели некоректное число')
+						input_operation = []
+						input_number = []
+						continue
+				elif len(input_number) == 1 and per_word == 0:
+					print('Вы ввели некоректное число')
+					input_operation = []
+					input_number = []
+					continue
 				if input_operation[0] == operation_sum:
-					input_per = input_per.split('+')
+					# input_per = input_per.split('+')
 					x = input_number[0]
 					y = input_number[1]
 					x = auto_oper(x)
@@ -266,20 +297,20 @@ while True:
 					break
 				elif input_operation[0] == operation_min:
 					# input_per = input_per.split('-')
-					# x = imput_number[0]
-					# y = imput_number[1]
-					# x = auto_oper(x)
-					# if x == 'Error':
-					# 	continue
-					# y = auto_oper(y)
-					# if y == 'Error':
-					# 	continue
-					# result = round(x - y, 3)
-					# print(f'Вы ввели x = {x} , y = {y}. Результат {x} - {y} =', result)
-					# flag = 1
+					x = input_number[0]
+					y = input_number[1]
+					x = auto_oper(x)
+					if x == 'Error':
+						continue
+					y = auto_oper(y)
+					if y == 'Error':
+						continue
+					result = round(x - y, 3)
+					print(f'Вы ввели x = {x} , y = {y}. Результат {x} - {y} =', result)
+					flag = 1
 					break
 				elif input_operation[0] == operation_umn:
-					input_per = input_per.split('*')
+					# input_per = input_per.split('*')
 					x = input_number[0]
 					y = input_number[1]
 					x = auto_oper(x)
@@ -293,7 +324,7 @@ while True:
 					flag = 1
 					break
 				elif input_operation[0] == operation_del:
-					input_per = input_per.split('/')
+					# input_per = input_per.split('/')
 					x = input_number[0]
 					y = input_number[1]
 					x = auto_oper(x)
@@ -310,7 +341,7 @@ while True:
 					flag = 1
 					break
 				elif input_operation[0] == '?':
-					input_per = input_per.split('//')
+					# input_per = input_per.split('//')
 					x = input_number[0]
 					y = input_number[1]
 					x = auto_oper(x)
@@ -327,7 +358,7 @@ while True:
 					flag = 1
 					break
 				elif input_operation[0] == operation_ostatok:
-					input_per = input_per.split('%')
+					# input_per = input_per.split('%')
 					x = input_number[0]
 					y = input_number[1]
 					x = auto_oper(x)
@@ -344,7 +375,7 @@ while True:
 					flag = 1
 					break
 				elif input_operation[0] == operation_step:
-					input_per = input_per.split('^')
+					# input_per = input_per.split('^')
 					x = input_number[0]
 					y = input_number[1]
 					x = auto_oper(x)
@@ -358,7 +389,7 @@ while True:
 					flag = 1
 					break
 				elif input_operation[0] == operation_sqrt:
-					input_per = input_per.split('sqrt')
+					# input_per = input_per.split('sqrt')
 					x = input_number[0]
 					x = auto_oper(x)
 					if x == 'Error':
@@ -371,9 +402,8 @@ while True:
 					flag = 1
 					break
 				elif input_operation[0] == operation_modul:
-					input_per = input_per.split('abs')
-					x = input_per[0]
-					y = input_per[1]
+					# input_per = input_per.split('abs')
+					x = input_number[0]
 					x = auto_oper(x)
 					if x == 'Error':
 						continue
@@ -382,8 +412,8 @@ while True:
 					flag = 1
 					break
 				elif input_operation[0] == operation_fact:
-					input_per = input_per.split('!')
-					x = input_per[0]
+					# input_per = input_per.split('!')
+					x = input_number[0]
 					x = auto_oper(x)
 					if x == 'Error':
 						continue
@@ -496,100 +526,187 @@ while True:
 		elif operation == operation_auto:
 			while True:
 				input_per = input(f'Введите операцию которую хотите сделать с результатом (для выхода введите "Exit"): {result} ')
+				result1 = result
+				result = str(result)
+				input_per = result + input_per
 				input_per = input_per.lower().strip().replace(' ', '')
-				if operation_sum in input_per:
-					input_per = input_per.split('+')
-					x = input_per[1]
-					x = auto_oper(x)
-					if x == 'Error':
-						continue
-					result1 = result
-					result = round(result + x, 3)
-					print(f'Результат: {result1} + {x} =', result)
-					break
-				elif operation_min in input_per:
-					input_per = input_per.split('-')
-					x = input_per[1]
-					x = auto_oper(x)
-					if x == 'Error':
-						continue
-					result1 = result
-					result = round(result - x, 3)
-					print(f'Результат: {result1} - {x} =', result)
-					break
-				elif operation_umn in input_per:
-					input_per = input_per.split('*')
-					x = input_per[1]
-					x = auto_oper(x)
-					if x == 'Error':
-						continue
-					result1 = result
-					result = round(result * x, 3)
-					print(f'Результат: {result1} * {x} =', result)
-					break
-				elif operation_del in input_per:
-					input_per = input_per.split('/')
-					x = input_per[1]
-					x = auto_oper(x)
-					if x == 0:
-						print(f'{name}, что же вы так, на 0 мы делить не можем. Повторите попытку')
-						continue
-					if x == 'Error':
-						continue
-					result1 = result
-					result = round(result / x, 3)
-					print(f'Результат: {result1} / {x} =', result)
-					break
-				elif operation_celdel in input_per:
-					input_per = input_per.split('//')
-					x = input_per[1]
-					x = auto_oper(x)
-					if x == 0:
-						print(f'{name}, что же вы так, на 0 мы делить не можем. Повторите попытку')
-						continue
-					if x == 'Error':
-						continue
-					result1 = result
-					result = round(result // x, 3)
-					print(f'Результат: {result1} // {x} =', result)
-					break
-				elif operation_celdel in input_per:
-					input_per = input_per.split('%')
-					x = input_per[1]
-					x = auto_oper(x)
-					if x == 0:
-						print(f'{name}, что же вы так, на 0 мы делить не можем. Повторите попытку')
-						continue
-					if x == 'Error':
-						continue
-					result1 = result
-					result = round(result % x, 3)
-					print(f'Результат: {result1} % {x} =', result)
-					break
-				elif operation_step in input_per:
-					input_per = input_per.split('^')
-					x = input_per[1]
-					x = auto_oper(x)
-					if x == 'Error':
-						continue
-					result1 = result
-					result = round(result ** x, 3)
-					print(f'Результат: {result1} ^ {x} =', result)
+				if input_per == '':
+					print('Вы ввели некоректное число')
+					continue
+				elif operation_exit in input_per:
 					break
 				elif operation_sqrt in input_per:
-					result1 = result
-					result = math.sqrt(result1)
-					print(f'Результат: sqrt({result1}) =', result)
-					break
+					input_operation.append('sqrt')
+					input_per = input_per.replace('sqrt', '')
 				elif operation_modul in input_per:
-					result1 = result
-					result = abs(result1)
-					print(f'Результат: abs({result1}) =', result)
-					break
+					input_operation.append('abs')
+					input_per = input_per.replace('abs', '')
 				elif operation_fact in input_per:
-					result1 = result
-					result =  math.factorial(result)
-					print(f'Результат: ({result1})! =', result)
+					input_operation.append('!')
+					input_per = input_per.replace('!', '')
+				elif operation_celdel in input_per:
+					input_operation.append('?')
+					input_per = input_per.replace('//', '?')
+				return_all = sort_string(input_per)
+				if return_all == None:
+					continue
+				input_number, input_operation = return_all
+				if len(input_operation) < 1:
+					print('Вы ввели некоректное число')
+					input_operation = []
+					input_number = []
+					continue
+				elif len(input_number) == 2:
+					if input_number[0] == '' or input_number[1] == '':
+						print('Вы ввели некоректное число')
+						input_operation = []
+						input_number = []
+						continue
+				elif len(input_number) == 1 and per_word == 0:
+					print('Вы ввели некоректное число')
+					input_operation = []
+					input_number = []
+					continue
+				if input_operation[0] == operation_sum:
+					x = input_number[0]
+					y = input_number[1]
+					x = auto_oper(x)
+					if x == 'Error':
+						continue
+					y = auto_oper(y)
+					if y == 'Error':
+						continue
+					result = round(x + y, 3)
+					print(f'Вы ввели x = {x} , y = {y}. Результат {x} + {y} =', result)
+					flag = 1
+					break
+				elif input_operation[0] == operation_min:
+					x = input_number[0]
+					y = input_number[1]
+					x = auto_oper(x)
+					if x == 'Error':
+						continue
+					y = auto_oper(y)
+					if y == 'Error':
+						continue
+					result = round(x - y, 3)
+					print(f'Вы ввели x = {x} , y = {y}. Результат {x} - {y} =', result)
+					flag = 1
+					break
+				elif input_operation[0] == operation_umn:
+					# input_per = input_per.split('*')
+					x = input_number[0]
+					y = input_number[1]
+					x = auto_oper(x)
+					if x == 'Error':
+						continue
+					y = auto_oper(y)
+					if y == 'Error':
+						continue
+					result = round(x * y, 3)
+					print(f'Вы ввели x = {x} , y = {y}. Результат {x} * {y} =', result)
+					flag = 1
+					break
+				elif input_operation[0] == operation_del:
+					# input_per = input_per.split('/')
+					x = input_number[0]
+					y = input_number[1]
+					x = auto_oper(x)
+					if x == 'Error':
+						continue
+					y = auto_oper(y)
+					if y == 0:
+						print(f'{name}, что же вы так, на 0 мы делить не можем. Повторите попытку')
+						continue
+					if y == 'Error':
+						continue
+					result = round(x / y, 3)
+					print(f'Вы ввели x = {x} , y = {y}. Результат {x} / {y} =', result)
+					flag = 1
+					break
+				elif input_operation[0] == '?':
+					# input_per = input_per.split('//')
+					x = input_number[0]
+					y = input_number[1]
+					x = auto_oper(x)
+					if x == 'Error':
+						continue
+					y = auto_oper(y)
+					if y == 0:
+						print(f'{name}, что же вы так, на 0 мы делить не можем. Повторите попытку')
+						continue
+					if y == 'Error':
+						continue
+					result = round(x // y, 3)
+					print(f'Вы ввели x = {x} , y = {y}. Результат {x} // {y} =', result)
+					flag = 1
+					break
+				elif input_operation[0] == operation_ostatok:
+					# input_per = input_per.split('%')
+					x = input_number[0]
+					y = input_number[1]
+					x = auto_oper(x)
+					if x == 'Error':
+						continue
+					y = auto_oper(y)
+					if y == 0:
+						print(f'{name}, что же вы так, на 0 мы делить не можем. Повторите попытку')
+						continue
+					if y == 'Error':
+						continue
+					result = round(x % y, 3)
+					print(f'Вы ввели x = {x} , y = {y}. Результат {x} % {y} =', result)
+					flag = 1
+					break
+				elif input_operation[0] == operation_step:
+					# input_per = input_per.split('^')
+					x = input_number[0]
+					y = input_number[1]
+					x = auto_oper(x)
+					if x == 'Error':
+						continue
+					y = auto_oper(y)
+					if y == 'Error':
+						continue
+					result = round(x ** y, 3)
+					print(f'Вы ввели x = {x} , y = {y}. Результат {x} ^ {y} =', result)
+					flag = 1
+					break
+				elif input_operation[0] == operation_sqrt:
+					# input_per = input_per.split('sqrt')
+					x = input_number[0]
+					x = auto_oper(x)
+					if x == 'Error':
+						continue
+					if x < 0:
+						print("Мы не извлекаем корень с отрицательного числа! Может кто другой сможет, let's try = ) ")
+						continue
+					result = round(math.sqrt(x), 3)
+					print(f'Вы ввели x = {x}. Результат sqrt({x}) =', result)
+					flag = 1
+					break
+				elif input_operation[0] == operation_modul:
+					# input_per = input_per.split('abs')
+					x = input_number[0]
+					x = auto_oper(x)
+					if x == 'Error':
+						continue
+					result =  round(abs(x), 3)
+					print(f'Вы ввели x = {x}. Результат abs({x}) =', result)
+					flag = 1
+					break
+				elif input_operation[0] == operation_fact:
+					# input_per = input_per.split('!')
+					x = input_number[0]
+					x = auto_oper(x)
+					if x == 'Error':
+						continue
+					if x < 0:
+						print('''Мы не находим факториал отрицательного числа! Может кто другой сможет, let's try = ) ''')
+						continue
+					result = round(math.factorial(x), 3)
+					print(f'Вы ввели x = {x}. Результат ({x})! =', result)
+					flag = 1
 					break
 				elif input_per == 'exit':
 					break
