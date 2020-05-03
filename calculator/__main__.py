@@ -26,7 +26,7 @@ while True:
             x = validations.input_chislo()
             y = validations.input_chislo()
             init.result = round(x + y, 3)
-            print(f'Вы ввели x = {x} , y = {y}. Результат {x} {operation} {y} =', init.result)
+            print(f'Вы ввели x = {init.x} , y = {init.y}. Результат {init.x} {operation} {init.y} =', init.result)
             init.flag = 1
             continue
         elif operation == init.operation_min:
