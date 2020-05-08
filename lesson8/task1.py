@@ -7,7 +7,7 @@ def oh_my_god():
         oops()
     except ValueError as e:
         print(e)
-    except Exception as e:
-        print("We don't have IndexError exception")
+    except IndexError as e:
+        print(e)
 
 oh_my_god()
