@@ -93,3 +93,4 @@ def sort_string(s):
             return None
     number.append(num)
     return number, init.input_operation
+

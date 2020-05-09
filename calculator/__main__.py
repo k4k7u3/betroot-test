@@ -295,8 +295,7 @@ while True:
                 elif init.input_per == 'exit':
                     break
     else:
-        operation = input(
-            'Ввести дальнейшую операцию или сбросить? (для cброса введите "clear", для описания операций введите "Info", для выхода введите "Exit"): ')
+        operation = input('Ввести дальнейшую операцию или сбросить? (для cброса введите "clear", для описания операций введите "Info", для выхода введите "Exit"): ')
         operation = operation.strip().lower()
         print(init.result)
         if operation == 'exit':

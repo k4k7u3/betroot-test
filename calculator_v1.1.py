@@ -91,7 +91,30 @@ def description_oper():
 	print('abs n' + '\t' + '- модуль числа, где n - введеное число;')
 	print('!' + '\t'*2 + '- факториал числа, n! - где n введеное число;')
 	print('auto' + '\t' + '- позволяет вводить команду полностью (доступна только одна операция!!!)')
-
+# Функция для сортировки вводимой строки в автоматическом режиме
+def sort_string(s):
+	flag1 = 0
+	operation = []
+	num = ''
+	number = []
+	for i in s:
+		if i.isdigit() == True:
+			num += i
+			flag1 = 1
+		elif i == '-' and flag1 == 0:
+			num += i
+		elif i == '.' and flag1 == 1:
+			num += i
+		elif i in list_operation and flag1 == 1:
+			operation.append(i)
+			number.append(num)
+			num = ''
+			flag1 = 0
+		else:
+			print('Вы ввели неверное число')
+			return None
+	number.append(num)
+	return number, operation
 name = input('Здравствуйте! Введите ваше имя: ')
 name = name.strip().capitalize()
 # Основной цикл

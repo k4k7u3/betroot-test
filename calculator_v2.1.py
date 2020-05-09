@@ -88,6 +88,8 @@ def auto_oper(input_value):
 		if negative_number == 1:
 			input_value = input_value * -1
 	return input_value
+
+
 #Функция для вывода информации об операциях
 def description_oper():
 	print('+' + '\t'*2 + '- сложение;')
@@ -102,6 +104,8 @@ def description_oper():
 	print('!' + '\t'*2 + '- факториал числа, n! - где n введеное число;')
 	print('auto' + '\t' + '- позволяет вводить команду полностью (доступна только одна операция!!!)')
 # Функция для сортировки вводимой строки в автоматическом режиме
+
+
 def sort_string(s):
 	flag1 = 0
 	num = ''
@@ -126,6 +130,7 @@ def sort_string(s):
 			return None
 	number.append(num)
 	return number, input_operation
+
 
 name = input('Здравствуйте! Введите ваше имя: ')
 name = name.strip().capitalize()
