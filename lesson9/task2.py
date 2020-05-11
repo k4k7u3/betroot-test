@@ -8,6 +8,10 @@ menu = {
     '9': 'Exit and save'
 }
 
+
+json_dict = {}
+info = []
+pattern = ["name", "surname", "full name", "telephone", "city"]
 global_search = ["name", "surname", "full name", "telephone", "city"]
 
 
@@ -24,24 +28,20 @@ def search_info(mod):
     return None
 
 
-json_dict = {}
-info = []
+def json_record():
+    json_file = open('task2.json', 'w+')
+    json.dump(json_info, json_file, indent=4)
+    json_file.close()
 
-pattern = {
-        "name": "",
-        "surname": "",
-        "full name": "",
-        "telephone": "",
-        "city": ""
-}
+
 try:
+    try:
+        json_file = open('task2.json', 'r')
+        json_info = json.load(json_file)
+    except json.decoder.JSONDecodeError:
+        json_info = []
+    json_file.close()
     while True:
-        try:
-            json_file = open('task2.json', 'r')
-            json_info = json.load(json_file)
-        except json.decoder.JSONDecodeError:
-            json_info = []
-        json_file.close()
         oper = input(f"Choose operation {menu}: ")
         oper = oper.strip().lower()
         if oper in menu:
@@ -51,9 +51,6 @@ try:
                     input_info = input_info.strip().lower()
                     json_dict[i] = input_info
                 json_info.append(json_dict)
-                json_file = open('task2.json', 'w+')
-                json.dump(json_info, json_file, indent=4)
-                json_file.close()
                 continue
             if oper == '2':
                 search_method = input("Input search method( name, surname, full name, telephone, city) : ")
@@ -80,17 +77,14 @@ try:
                             input_info = input(f'Input {j}: ')
                             input_info = input_info.strip().lower()
                             i[j] = input_info
-                json_file = open('task2.json', 'w+')
-                json.dump(json_info, json_file, indent=4)
-                json_file.close()
                 continue
             if oper == '9':
+                json_record()
                 print("Thank You! Good Bye =) ")
                 break
         else:
             print('Incorrect input')
             continue
-        break
 except Exception:
     print("Error")
 finally:
