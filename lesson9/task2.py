@@ -52,7 +52,7 @@ try:
                     json_dict[i] = input_info
                 json_info.append(json_dict)
                 continue
-            if oper == '2':
+            elif oper == '2':
                 search_method = input("Input search method( name, surname, full name, telephone, city) : ")
                 if search_method not in global_search:
                     print("Incorrect input")
@@ -60,16 +60,22 @@ try:
                 else:
                     search_info(search_method)
                     continue
-            if oper == '3':
+            elif oper == '3':
                 number = input("Input number to delete a record by number : ")
                 for i in json_info:
                     if i["telephone"] == number:
-                        json_info.remove(i)
-                json_file = open('task2.json', 'w+')
-                json.dump(json_info, json_file, indent=4)
-                json_file.close()
+                        print(i)
+                        while True:
+                            y_n = input("Are you really wanna delete this record? (1 - yes, 2 - no)? ")
+                            if y_n == "1":
+                                json_info.remove(i)
+                                break
+                            elif y_n == "2":
+                                break
+                            else:
+                                print("Incorrect input")
                 continue
-            if oper == '4':
+            elif oper == '4':
                 number = input("Input number to update a record by number : ")
                 for i in json_info:
                     if i["telephone"] == number:
@@ -83,11 +89,10 @@ try:
                 print("Thank You! Good Bye =) ")
                 break
         else:
-            print('Incorrect input')
-            continue
+            print("Incorrect input")
 except Exception:
     print("Error")
 finally:
     with open('task2.json', 'w+') as json_file:
-        json.dump(json_info, json_file, indent = 4)
+        json.dump(json_info, json_file, indent=4)
 print("Good Bye")
