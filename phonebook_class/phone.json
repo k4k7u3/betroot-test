@@ -1,1 +1,16 @@
-[]
+[
+    {
+        "name": "sasha",
+        "surname": "butenko",
+        "full_name": "sasha butenko",
+        "telephone": "0994897214",
+        "city": "kharkov"
+    },
+    {
+        "name": "sasha",
+        "surname": "butenko",
+        "full_name": "sasha butenko",
+        "telephone": "0994897214",
+        "city": "rohan"
+    }
+]

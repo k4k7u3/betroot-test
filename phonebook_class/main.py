@@ -20,12 +20,22 @@ global_search = ["name", "surname", "full name", "telephone", "city"]
 class Person:
     name = ""
     surname = ""
-    full_name = name + ' ' + surname
+    full_name = ""
     telephone = ""
     city = ""
 
-    def __init__(self, name):
+    def __init__(self, name, surname, full_name, telephone, city):
         self.name = name
+        self.surname = surname
+        self.full_name = self.name + ' ' + self.surname
+        self.telephone = telephone
+        self.city = city
+
+    def __str__(self):
+        return f'{self.name} from {self.city}'
+
+    def __repr__(self):
+        return f'{self.name} from {self.city}'
 
     def get_info(self):
         self.surname = input("Input surname: ")
@@ -42,51 +52,30 @@ class Person:
             "city": self.city
             }
 
+    def search(self, mod, input_value):
+        for attr, value in self.__dict__.items():
+            if attr == mod and value == input_value:
+                return True
+        return False
+
 
 def pre_initialization():
     if len(json_info) > 0:
         for i in json_info:
-            person = Person(i["name"])
-            person.surname = i["surname"]
-            person.full_name = i["full_name"]
-            person.telephone = i["telephone"]
-            person.city = i["city"]
-            list_class.append(person)
+            list_class.append(Person(**i))
 
 
 def search_info(mod):
-    input_name = input(f"What {mod} do you want to find? : ")
+    input_info = input(f"What {mod} do you want to find? : ")
     info = []
-    if mod == "name":
-        for i in list_class:
-            if i.name == input_name:
-                search_info = i.get_dict()
-                info.append(search_info)
-    elif mod == "surname":
-        for i in list_class:
-            if i.surname == input_name:
-                search_info = i.get_dict()
-                info.append(search_info)
-    elif mod == "full name":
-        for i in list_class:
-            if i.full_name == input_name:
-                search_info = i.get_dict()
-                info.append(search_info)
-    elif mod == "telephone":
-        for i in list_class:
-            if i.telephone == input_name:
-                search_info = i.get_dict()
-                info.append(search_info)
-    elif mod == "city":
-        for i in list_class:
-            if i.city == input_name:
-                search_info = i.get_dict()
-                info.append(search_info)
+    for i in list_class:
+        ret = i.search(mod, input_info)
+        if ret is True:
+            info.append(i)
     if len(info) != 0:
         print(info)
     else:
-        print(f"We don't find this {mod}")
-    return None
+        print("We don't find anything. Try again")
 
 
 try:
@@ -103,8 +92,10 @@ try:
         if oper in menu:
             if oper == '1':
                 input_name = input("Input name: ")
-                created_person = Person(input_name)
-                created_person.get_info()
+                input_surname = input("Input surname: ")
+                input_tel = input("Input telephone: ")
+                input_city = input("Input city: ")
+                created_person = Person(input_name, input_surname, input_tel, input_city)
                 list_class.append(created_person)
                 continue
             elif oper == '2':
