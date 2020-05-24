@@ -1,30 +1,29 @@
 class Mathematician:
-
     def square_nums(self, s):
-        square_list = []
+        self.square_list = []
         for i in s:
             if type(i) != int:
                 return None
-            square_list.append(i * i)
-        return square_list
+            self.square_list.append(i * i)
+        return self.square_list
 
     def remove_positives(self, s):
-        negative = []
+        self.negative = []
         for i in s:
             if type(i) != int:
                 return None
             if i < 0:
-                negative.append(i)
-        return negative
+                self.negative.append(i)
+        return self.negative
 
     def filter_leaps(self, s):
-        leaps_years = []
+        self.leaps_years = []
         for i in s:
             if type(i) != int:
                 return None
             if i % 4 == 0 or (i % 100 != 0 and i % 400 == 0):
-                leaps_years.append(i)
-        return leaps_years
+                self.leaps_years.append(i)
+        return self.leaps_years
 
 
 x = Mathematician()
