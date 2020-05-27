@@ -6,16 +6,14 @@ class Product:
     def __init__(self, my_type, name, price):
         if type(my_type) != str:
             raise ValueError("Type should be a string")
-        else:
-            self.my_type = my_type
         if type(name) != str:
             raise ValueError("Type should be a string")
-        else:
-            self.name = name
         if type(price) != int and type(price) != float:
             raise ValueError("Price should be a number")
-        else:
-            self.price = price
+
+        self.my_type = my_type
+        self.name = name
+        self.price = price
 
     def __str__(self):
         return f'{self.name} = {self.price}'
@@ -36,39 +34,59 @@ class ProductStore:
         product.price *= 1.3
         self.storage.append(x)
 
-    def set_discount(self, product_identifier, percent):
+    def set_discount(self, identifier, percent, identifier_name):
         if type(percent) != int and type(percent) != float:
             raise ValueError("Percent should be a number")
-        for i in self.storage:
-            my_product = i["product"]
-            if my_product.my_type == product_identifier or my_product.name == product_identifier:
-                my_product.price = my_product.price * (1 - (percent / 100))
+        identifier_name = identifier_name.lower()
+        if identifier_name == "type":
+            for i in self.storage:
+                my_product = i["product"]
+                if my_product.my_type == identifier:
+                    my_product.price = my_product.price * (1 - (percent / 100))
+        elif identifier_name == "name":
+            for i in self.storage:
+                my_product = i["product"]
+                if my_product.name == identifier:
+                    my_product.price = my_product.price * (1 - (percent / 100))
+        else:
+            raise ValueError("Identifier_name should be a 'type' or 'name' ")
 
-    def sell_product(self, product, amount):
+    def sell_product(self, product_name, amount):
         for i in self.storage:
             my_product = i["product"]
-            if my_product.name == product.name:
-                try:
-                    if amount >= i["amount"]:
-                        raise Exception("We don't have such amount of product")
-                    else:
-                        i["amount"] -= amount
-                        self.profit = amount * my_product.price
-                except Exception as e:
-                    print(e)
+            if my_product.name == product_name:
+                if amount > i["amount"]:
+                    raise CustomException("We don't have such amount of product")
+                else:
+                    i["amount"] -= amount
+                    self.profit += (amount * my_product.price)
 
     def get_income(self):
-        return print(f"{self.profit} $")
+        return f"{self.profit} $"
 
     def get_all_product(self):
-        return print(self.storage)
+        return self.storage
 
     def product_info(self, product):
         for i in self.storage:
             my_product = i["product"]
             if my_product.name == product.name:
                 my_tuple = product.name, i["amount"]
-                return print(my_tuple)
+                return my_tuple
+
+
+class CustomException(Exception):
+    message = ""
+
+    def __init__(self, msg):
+        self.message = msg
+
+    def __str__(self):
+        return f'{self.message}'
+
+    def __repr__(self):
+        return f'{self.message}'
+
 
 try:
     first_product = Product("fruit", "apple", 10)
@@ -76,12 +94,15 @@ try:
     store = ProductStore()
     store.add(first_product, 200)
     store.add(second_product, 50)
-    store.get_all_product()
-    store.sell_product(first_product, 10)
-    store.get_all_product()
-    store.get_income()
-    store.set_discount("apple", 20)
-    store.get_all_product()
-    store.product_info(first_product)
+    print(store.get_all_product())
+    store.sell_product("apple", 12)
+    store.sell_product("watermelone", 30)
+    print(store.get_all_product())
+    print(store.get_income())
+    store.set_discount("fruit", 50, "type")
+    print(store.get_all_product())
+    print(store.product_info(first_product))
 except ValueError as e:
+    print(e)
+except CustomException as e:
     print(e)
