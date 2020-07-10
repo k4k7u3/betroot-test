@@ -281,7 +281,6 @@ class MyWindow(QMainWindow):
                         self.display.setText(self.fail)
                         self.operation = "Error"
 
-
     # функция для обработки кнопки "="
     def _equally(self):
         value = self.display.text()
@@ -418,7 +417,9 @@ class MyWindow(QMainWindow):
     def _operationAdd(self) -> NoReturn:
         self._fieldprocessing()
         if self.operation == "":
+
             value = self.display.text()
+            print(value)
             if value == self.fail or value == self.fail1:                           # проверка, для того, что бы если у нас на экране self.fail и мы
                 value = "0"                                                         # нажимаем операцию какую либо, то что-бы начиналось с 0
             if "." in value:
@@ -637,6 +638,7 @@ class MyWindow(QMainWindow):
                 self.firstvalue = int(value)
             self.firstvalue *= self.firstvalue
             self.display.setText(str(self.firstvalue))
+            self.secOper = "="
         elif self.operation == "Error":
             value = self.display.text()
             self.operation = ""
@@ -671,6 +673,7 @@ class MyWindow(QMainWindow):
                 return
             self.firstvalue = sqrt(self.firstvalue)
             self.display.setText(str(self.firstvalue))
+            self.secOper = "="
         elif self.operation == "Error":
             value = self.display.text()
             self.operation = ""
@@ -715,8 +718,6 @@ class MyWindow(QMainWindow):
             self._numbersTypeDetermenition(tempvalue)
             self.secondvalue = (self.firstvalue * self.secondvalue) / 100
             self.display.setText(str(self.firstvalue) + self.operation + str(self.secondvalue))
-
-
 
     # функция для печати чисел (0 - 9)
     def _printvalue(self, text: str) -> NoReturn:
