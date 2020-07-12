@@ -3,30 +3,47 @@ from typing import NoReturn
 class Myclass:
     def __init__(self, inputStr: str) -> NoReturn:
         self.classStr: str = inputStr
-        self.squareBrackets: int = 0
-        self.parentheses: int = 0
-        self.curlyBrackets: int = 0
+        self.stack = []
+        self.opposite = ""
 
-    def balanced(self) -> NoReturn:
-        for i in self.classStr:
-            if i == "(":
-                self.curlyBrackets += 1
-            elif i == ")":
-                self.curlyBrackets -= 1
-            elif i == "[":
-                self.squareBrackets += 1
-            elif i == "]":
-                self.squareBrackets -= 1
-            elif i == "{":
-                self.parentheses += 1
-            elif i == "}":
-                self.parentheses -= 1
-        if self.curlyBrackets == 0 and self.squareBrackets == 0 and self.parentheses == 0:
-            print("Perfect balance (c) Thanos")
+    def balanced(self):
+        if len(self.classStr) % 2 != 0:
+            return "Not Balanced"
         else:
-            print("Not enough stones")
+            self.stack.append(self.classStr[0])
+            self.classStr = self.classStr[1:]
+            self.search_balanced()
+            print(self.opposite)
 
+    def search_balanced(self) -> str:
+        self.check_opposite(self.classStr[0])
+        if len(self.classStr) == 0 and len(self.stack) == 0:
+            self.opposite = "Perfect Balanced (c) THANOS"
+            return
+        elif len(self.classStr) == 0 and len(self.stack) != 0:
+            self.opposite = "Not Balanced"
+            return
+        self.search_balanced()
 
-balanced = "(){{}[]]"
+    def check_opposite(self, a: str):
+        if self.stack == [] and len(self.classStr) != 0:
+            self.stack.append(a)
+            self.classStr = self.classStr[1:]
+        elif self.stack[-1] == "(" and a == ")":
+            self.stack.pop()
+            self.classStr = self.classStr[1:]
+        elif self.stack[-1] == "[" and a == "]":
+            self.stack.pop()
+            self.classStr = self.classStr[1:]
+        elif self.stack[-1] == "{" and a == "}":
+            self.stack.pop()
+            self.classStr = self.classStr[1:]
+        else:
+            self.stack.append(a)
+            self.classStr = self.classStr[1:]
+
+balanced = "()({[][]})"
 mystr = Myclass(balanced)
 mystr.balanced()
+
+
