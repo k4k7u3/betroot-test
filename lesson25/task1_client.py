@@ -7,7 +7,7 @@ PORT = 65432
 
 message = b"Hello UPD"
 
+
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 for i in range(10):
-    sock.sendto(bytes(message, encoding='utf-8'), (IP, PORT))
-    
+    sock.sendto(message, (IP, PORT))
