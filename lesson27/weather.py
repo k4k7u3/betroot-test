@@ -70,31 +70,31 @@ class MyWindow(QMainWindow):
             self.msg4.setText("")
             self.msg5.setText("")
             self.msg6.setText("")
-            return
-        if self.msg.text():
-            self.msg.setText("")
-        resp = requests.get(
-            f"http://api.openweathermap.org/data/2.5/weather",
-            params={"q": value, "units": "metric", "lang": "ru", "appid": "e202fd651779d31cb4bc74b0e0550e9d"})
-        data: Dict = resp.json()
-        if int(data["cod"]) >= 400:
-            self.msg.setText(data["message"])
-            self.msg1.setText("")
-            self.msg2.setText("")
-            self.msg3.setText("")
-            self.msg4.setText("")
-            self.msg5.setText("")
-            self.msg6.setText("")
-            return
-        a = u'\u2103'
-        temperature: Union[int, float] = data["main"]["temp"]
-        self.msg.setText(f"Temperature: {temperature} {a}")
-        self.msg1.setText(f"Feels like: {data['main']['feels_like']} {a}")
-        self.msg2.setText(f"Main: {data['weather'][0]['main']}")
-        self.msg3.setText(f"Description: {data['weather'][0]['description']}")
-        self.msg4.setText(f"Max Temp.: {data['main']['temp_max']} {a}")
-        self.msg5.setText(f"Min Temp.: {data['main']['temp_min']} {a}")
-        self.msg6.setText(f"Humidity: {data['main']['humidity']} %")
+        else:
+            if self.msg.text():
+                self.msg.setText("")
+            resp = requests.get(
+                f"http://api.openweathermap.org/data/2.5/weather",
+                params={"q": value, "units": "metric", "lang": "ru", "appid": "e202fd651779d31cb4bc74b0e0550e9d"})
+            data: Dict = resp.json()
+            if int(data["cod"]) >= 400:
+                self.msg.setText(data["message"])
+                self.msg1.setText("")
+                self.msg2.setText("")
+                self.msg3.setText("")
+                self.msg4.setText("")
+                self.msg5.setText("")
+                self.msg6.setText("")
+            else:
+                a = u'\u2103'
+                temperature: Union[int, float] = data["main"]["temp"]
+                self.msg.setText(f"Temperature: {temperature} {a}")
+                self.msg1.setText(f"Feels like: {data['main']['feels_like']} {a}")
+                self.msg2.setText(f"Main: {data['weather'][0]['main']}")
+                self.msg3.setText(f"Description: {data['weather'][0]['description']}")
+                self.msg4.setText(f"Max Temp.: {data['main']['temp_max']} {a}")
+                self.msg5.setText(f"Min Temp.: {data['main']['temp_min']} {a}")
+                self.msg6.setText(f"Humidity: {data['main']['humidity']} %")
 
 
 def main() -> NoReturn:
