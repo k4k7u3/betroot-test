@@ -66,7 +66,7 @@ def create_tables_in_database() -> NoReturn:
         connection.commit()
         cursor.execute("CREATE TABLE Premier_League (id serial primary key, seasons varchar(100) not null, start_seasons date, end_seasons date, champion_id integer not null)")
         connection.commit()
-        cursor.execute("CREATE TABLE info_about_season (id serial primary key, season varchar(100) not null, round integer not null, match_date date not null, home_team_id integer not null, away_team_id integer not null, home_team_goal integer not null, away_team_goal integer not null)")
+        cursor.execute("CREATE TABLE info_about_season (id serial primary key, season_id integer not null, round integer not null, match_date date not null, home_team_id integer not null, away_team_id integer not null, home_team_goal integer not null, away_team_goal integer not null)")
         connection.commit()
         cursor.close()
     except:
@@ -76,7 +76,7 @@ def create_tables_in_database() -> NoReturn:
 
 def load_to_database() -> NoReturn:
     global data
-    seasons = "2019/2020"
+    seasons = (f'{data["matches"][0]["season"].get("startDate")[:4]}/{data["matches"][0]["season"].get("endDate")[:4]}')
     start_seasons = data["matches"][0]["season"].get("startDate")
     end_seasons = data["matches"][0]["season"].get("endDate")
     champion_id = data["matches"][0]['homeTeam']['id']
@@ -92,15 +92,21 @@ def load_to_database() -> NoReturn:
         cursor.execute("Insert into Premier_League(seasons, start_seasons, end_seasons, champion_id) values(%s, %s, %s, %s)", (seasons, start_seasons, end_seasons, champion_id))
         connection.commit()
         cursor.execute("ALTER TABLE premier_league ADD CONSTRAINT id_team_fpkey FOREIGN KEY(champion_id) REFERENCES All_commands_in_this_seasons(command_id) match simple ON UPDATE NO ACTION ON DELETE NO ACTION")
+        connection.commit()
+        cursor.execute("Select id from premier_league")
+        season_id = cursor.fetchall()
         for item in data["matches"]:
-            cursor.execute("Insert into info_about_season(season, round, match_date, home_team_id, away_team_id, home_team_goal, away_team_goal) values(%s, %s, %s, %s, %s, %s, %s)", (seasons, item['matchday'], item['utcDate'][:10], item['homeTeam']['id'], item['awayTeam']['id'], item['score']['fullTime']['homeTeam'], item['score']['fullTime']['awayTeam']))
+            cursor.execute("Insert into info_about_season(season_id, round, match_date, home_team_id, away_team_id, home_team_goal, away_team_goal) values(%s, %s, %s, %s, %s, %s, %s)", (season_id[0][0], item['matchday'], item['utcDate'][:10], item['homeTeam']['id'], item['awayTeam']['id'], item['score']['fullTime']['homeTeam'], item['score']['fullTime']['awayTeam']))
             connection.commit()
         cursor.execute("ALTER TABLE info_about_season ADD CONSTRAINT home_team_id_pkey_with_comand_id_home_team FOREIGN KEY (home_team_id) REFERENCES All_commands_in_this_seasons (command_id) match simple ON UPDATE NO ACTION ON DELETE NO ACTION")
         connection.commit()
         cursor.execute("ALTER TABLE info_about_season ADD CONSTRAINT home_team_id_pkey_with_comand_id_away_team FOREIGN KEY (away_team_id) REFERENCES All_commands_in_this_seasons (command_id) match simple ON UPDATE NO ACTION ON DELETE NO ACTION")
         connection.commit()
+        cursor.execute("ALTER TABLE info_about_season ADD CONSTRAINT seasons_id FOREIGN KEY (season_id) REFERENCES premier_league (id) match simple ON UPDATE NO ACTION ON DELETE NO ACTION")
+        connection.commit()
         cursor.close()
     except:
+        print("Program break")
         connection.rollback()
     connection.close()
 
@@ -169,7 +175,7 @@ class MyWindow(QMainWindow):
                                           password='qwe123')
             cursor = connection.cursor()
             cursor.execute(
-                'Select info_about_season.match_date, info_about_season.home_team_id, info_about_season.away_team_id, info_about_season.home_team_goal, info_about_season.away_team_goal from premier_league inner join info_about_season on premier_league.seasons = info_about_season.season where info_about_season.round = %s;',
+                'Select info_about_season.match_date, info_about_season.home_team_id, info_about_season.away_team_id, info_about_season.home_team_goal, info_about_season.away_team_goal from premier_league inner join info_about_season on premier_league.id = info_about_season.season_id where info_about_season.round = %s;',
                 (number,))
             self.info_about_tour = cursor.fetchall()
             cursor.execute(
@@ -182,6 +188,7 @@ class MyWindow(QMainWindow):
             self.name_away_team = cursor.fetchall()
             cursor.close()
         except:
+            print("HEREEEE")
             connection.rollback()
         connection.close()
 
