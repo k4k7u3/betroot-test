@@ -2,26 +2,29 @@ import asyncio
 from aiohttp_requests import requests
 import json
 
-url = 'https://api.pushshift.io/reddit/comment/search/'
+url = 'https://api.pushshift.io/reddit/search/comment/'
 data = {}
 line = []
+thems = ['soccer', 'AskReddit', 'ireland']
 
 
-async def req(url):
-    global data
-    resp = await requests.get(url)
-    data = await resp.json()
-    print("Close")
-
-
-async def load_json():
+async def req(url, i):
     global data, line
-    data1 = {}
-    if data == {}:
-        await asyncio.sleep(5)
-    for i in range(0, len(data['data'])):
-        data1[f'{i}'] = data['data'][i]['body']
-    line.append(data1)
+    print("start")
+    resp = await requests.get(url, params={"sort": 'new', 'subreddit': i})
+    print("Close")
+    return await resp.json()
+
+
+def load_json(data):
+    comments = {}
+    for i in range(0, 3):
+        line = []
+        for j in data[i]['data']:
+            line.append(j['body'])
+        comments[thems[i]] = line
+    line = []
+    line.append(comments)
     try:
         with open('comments.json', 'w+') as json_file:
             json.dump(line, json_file, indent=4)
@@ -29,10 +32,7 @@ async def load_json():
         print("Yeeah baby")
 
 
-event_loop = asyncio.get_event_loop()
-try:
-    event_loop.create_task(req(url))
-    event_loop.create_task(load_json())
-    event_loop.run_forever()
-finally:
-    event_loop.close()
+if __name__ == "__main__":
+    cor = [req(url, i) for i in thems]
+    data = asyncio.get_event_loop().run_until_complete(asyncio.gather(*cor))
+    load_json(data)
