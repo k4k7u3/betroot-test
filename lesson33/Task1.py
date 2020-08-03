@@ -24,10 +24,12 @@ async def fact(name, number):
 
 async def squares(name, number, exp):
     print(f"Start function {name}")
-    await asyncio.sleep(0.8)
-    number *= exp
+    result = number
+    for i in range(2, exp):
+        result *= number
+        await asyncio.sleep(0.8)
     print(f"End function {name}")
-    return number
+    return result
 
 
 async def main():
@@ -36,7 +38,7 @@ async def main():
     a= await asyncio.gather(
         fibo("Fibonacci", number),
         fact("Factorial", number),
-        squares("Square", number, random.randint(10, 20)),
+        squares("Square", number, random.randint(10, 20))
         )
     print(a)
     print(f"Fibonacci({number}) = {a[0]}, Factorial({number}) = {a[1]}, Square({number}) = {a[2]}")
