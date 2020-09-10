@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title%}
+    Add
+{% endblock %}
+
+{% block content%}
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="container pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-left">
+          <h2 class="container">Results:</h2>
+            <div class="alert alert-info">
+                <p>
+                    <h2>Title: {{ articles['items'][0]['volumeInfo']['title'] }}</h2>
+                    <p class="lead"><b>Authors:</b> {{ articles['items'][0]['volumeInfo']['authors'] }}</p>
+                    <p class="lead"><b>Published Date:</b> {{ articles['items'][0]['volumeInfo']['publishedDate'] }}</p>
+                    <p class="lead"><b>Description:</b> {{ articles['items'][0]['volumeInfo']['description'] }}</p>
+                    <p><a href="/result" class="btn btn-warning">Back</a></p>
+                    {{ form.review.label }}<br>
+                    <p style="font-size: 14pt">{{ form.review(rows='7',cols='50') }}</p>
+                </p>
+                <p class="lead">{{ form.submit() }}</p>
+            </div>
+        </div>
+    </form>
+{% endblock %}

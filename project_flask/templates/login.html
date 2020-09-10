@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Sign In
+{% endblock %}
+
+{% block content%}
+    <h1>Sign in</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32)}}
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="container text-center">
+                {% if 'Invalid username' in messages %}
+                    <span style="color: red;">{{ 'Invalid username' }}</span>
+                {% endif %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="container text-center">
+                {% for message in messages %}
+                    {% if 'Invalid password' in messages %}
+                        <span style="color: red;">{{ message }}</span>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+        <p>If you do not have an account please register</p>
+         <a class="btn btn-outline-primary" href="/register">Register</a>
+    </form>
+{% endblock %}
