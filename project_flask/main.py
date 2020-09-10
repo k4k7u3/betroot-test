@@ -13,7 +13,7 @@ from app.forms import LoginForm, RegistrationForm, SearchForm, AddBookForm, Chan
 from app.user import User
 
 isbn = ""
-api_key = "AIzaSyCQ_QUnlKAtl2z4OUIKxEotOZnC4CS_0Y4"
+api_key = "#######"
 articles = None
 
 app = Flask(__name__)
