@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title%}
+    About US
+{% endblock %}
+
+{% block content%}
+    <div class="team_info">
+        <div class="team_header">
+            <img src="{{ url_for('static', filename='img/kadr6.png') }}" alt="team">
+            <p>
+                Над проектом могли работать, но не смогли:
+            </p>
+        </div>
+
+        <div class="team_photo">
+            <div class="team1">
+                <img src="{{ url_for('static', filename='img/mask.jpg') }}" alt="team">
+                <div class="team_about">
+                    <h1>Elon Musk</h1>
+                    <p>CEO</p>
+                    <p>Выступал на радио</p>
+                </div>
+            </div>
+            <div class="team2">
+                <img src="{{ url_for('static', filename='img/jeff.jpg') }}" alt="team">
+                <div class="team_about">
+                    <h1>Jeffrey Bezos</h1>
+                    <p>Supervisor</p>
+                    <p>Разводился с женой</p>
+                </div>
+            </div>
+            <div class="team3">
+                <img src="{{ url_for('static', filename='img/mark.jpg') }}" alt="team">
+                <div class="team_about">
+                    <h1>Mark Zuckerberg</h1>
+                    <p>WebDesigner</p>
+                    <p>Снимался в фильме</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

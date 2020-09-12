@@ -18,6 +18,7 @@ articles = None
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "you-will-never-guess"
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 login = LoginManager(app)
 login.login_view = 'login'
 
@@ -36,10 +37,20 @@ def load_user(id):
     return user
 
 
-@app.route('/home')
-@app.route('/')
+@app.route('/home', methods=["GET", "POST"])
+@app.route('/', methods=["GET", "POST"])
 def main():
-    return render_template("base.html", title="BookGeek")
+    return render_template("home.html", title="BookGeek")
+
+
+@app.route('/about', methods=["GET", "POST"])
+def about():
+    return render_template("about.html", title="BookGeek")
+
+
+@app.route('/about_romans', methods=["GET", "POST"])
+def about_romans():
+    return render_template("about_romans.html", title="BookGeek")
 
 
 @app.route('/user/<string:name>')

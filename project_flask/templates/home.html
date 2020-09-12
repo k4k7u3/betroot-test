@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title%}
+    Home
+{% endblock %}
+
+{% block content%}
+    <div class="container">
+        <div class="main">
+            <img src="{{ url_for('static', filename='img/books.jpg') }}" alt="main">
+            <div class="about_new_book">
+                <p>10 главных переводных романов, которые нужно читать этой осенью...</p>
+                <a href="/about_romans" class="btn btn-warning">More</a>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
