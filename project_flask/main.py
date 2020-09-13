@@ -48,9 +48,9 @@ def about():
     return render_template("about.html", title="BookGeek")
 
 
-@app.route('/about_romans', methods=["GET", "POST"])
-def about_romans():
-    return render_template("about_romans.html", title="BookGeek")
+@app.route('/about_romance', methods=["GET", "POST"])
+def about_romance():
+    return render_template("about_romance.html", title="BookGeek")
 
 
 @app.route('/user/<string:name>')
