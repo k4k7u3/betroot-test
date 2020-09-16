@@ -11,6 +11,7 @@
           <h2 class="container">Results:</h2>
             <div class="alert alert-info">
                 <p>
+                    <img src="{{ img_articles }}" alt="">
                     <h2>Title: {{ articles['items'][0]['volumeInfo']['title'] }}</h2>
                     <p class="lead"><b>Authors:</b> {{ articles['items'][0]['volumeInfo']['authors'] }}</p>
                     <p class="lead"><b>Published Date:</b> {{ articles['items'][0]['volumeInfo']['publishedDate'] }}</p>

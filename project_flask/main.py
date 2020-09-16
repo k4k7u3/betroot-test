@@ -3,6 +3,7 @@ from flask import render_template, flash, redirect
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 import psycopg2
 from werkzeug.security import generate_password_hash, check_password_hash
+from apiclient.discovery import build
 
 import requests
 import sys
@@ -13,8 +14,9 @@ from app.forms import LoginForm, RegistrationForm, SearchForm, AddBookForm, Chan
 from app.user import User
 
 isbn = ""
-api_key = "#######"
+api_key = "AIzaSyCQ_QUnlKAtl2z4OUIKxEotOZnC4CS_0Y4"
 articles = None
+img_articles = None
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "you-will-never-guess"
@@ -105,7 +107,7 @@ def book_change(name, id):
 
 @app.route('/add', methods=["GET", "POST"])
 def add_book():
-    global articles
+    global articles, img_articles
     method = request.method
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
@@ -115,23 +117,26 @@ def add_book():
         connection = psycopg2.connect(host='localhost', database='postgres', port=5432, user='postgres',
                                       password='qwe123')
         cursor = connection.cursor()
-        cursor.execute("Insert into books (user_name, title, authors, published_date, description, review, add_date) values (%s, %s, %s, %s, %s, %s, %s)",
-                       (current_user.name, articles['items'][0]['volumeInfo']['title'], articles['items'][0]['volumeInfo']['authors'], articles['items'][0]['volumeInfo']['publishedDate'], articles['items'][0]['volumeInfo']['description'], book_form.review.data, data_time))
+        cursor.execute("Insert into books (user_name, title, authors, published_date, description, review, add_date, img_link) values (%s, %s, %s, %s, %s, %s, %s, %s)",
+                       (current_user.name, articles['items'][0]['volumeInfo']['title'], articles['items'][0]['volumeInfo']['authors'], articles['items'][0]['volumeInfo']['publishedDate'], articles['items'][0]['volumeInfo']['description'], book_form.review.data, data_time, img_articles))
         connection.commit()
         cursor.close()
         return redirect(f'/user/{current_user.name}')
-    return render_template("add.html", articles=articles, form=book_form)
+    return render_template("add.html", articles=articles, img_articles=img_articles, form=book_form)
 
 
 @app.route('/result', methods=["GET", "POST"])
 def result():
-    global isbn, articles
+    global isbn, articles, img_articles
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
     params = {"q": f"isbn:{isbn}", "key": f"{api_key}"}
     resp = requests.get("https://www.googleapis.com/books/v1/volumes", params=params)
     articles = resp.json()
-    return render_template("result.html", articles=articles)
+    resource = build("customsearch", "v1", developerKey=api_key).cse()
+    result = resource.list(q=f'{isbn} google books', cx='3041d3f76890f31ce', searchType='image').execute()
+    img_articles = result['items'][0]['link']
+    return render_template("result.html", articles=articles, img_articles=result)
 
 
 @app.route('/search', methods=["GET", "POST"])
@@ -158,7 +163,7 @@ def logout():
     method = request.method
     logout_user()
     if method == "GET":
-        return render_template("base.html", title="BookGeek")
+        return render_template("home.html", title="BookGeek")
     else:
         return redirect(url_for('home'))
 
