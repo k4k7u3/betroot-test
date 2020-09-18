@@ -135,7 +135,10 @@ def result():
     articles = resp.json()
     resource = build("customsearch", "v1", developerKey=api_key).cse()
     result = resource.list(q=f'{isbn} google books', cx='3041d3f76890f31ce', searchType='image').execute()
-    img_articles = result['items'][0]['link']
+    if 'items' in result:
+        img_articles = result['items'][0]['link']
+    else:
+        img_articles = ""
     return render_template("result.html", articles=articles, img_articles=result)
 
 

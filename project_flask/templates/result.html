@@ -12,7 +12,11 @@
             <h2>Ничего не найдено</h2>
             <a href="/search" class="btn btn-warning">Try again</a>
         {% else %}
-            <img src="{{ img_articles['items'][0]['link'] }}" alt="{{ img_articles['items'][0]['title'] }}">
+            {% if 'items' not in img_articles %}
+                <img src="">
+            {% else %}
+                <img src="{{ img_articles['items'][0]['link'] }}" alt="{{ img_articles['items'][0]['title'] }}">
+            {% endif %}
             <h2>Title: {{ articles['items'][0]['volumeInfo']['title'] }}</h2>
             <p class="lead"><b>Authors:</b> {{ articles['items'][0]['volumeInfo']['authors'] }}</p>
             <p class="lead"><b>Published Date:</b> {{ articles['items'][0]['volumeInfo']['publishedDate'] }}</p>
