@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title%}
+    {{title}}
+{% endblock %}
+
+{% block content%}
+    <main role="main">
+
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1>Продукция</h1>
+                <p class="lead text-muted text-center">Здесь может быть что-то написано</p>
+                <p>
+                    <a href="/" class="btn btn-primary my-2">На главную</a>
+                    <a href="{{ url_for('static', filename='pdf/price.pdf') }}" class="btn btn-secondary my-2">Узнать цены</a>
+                </p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="catalog" src="{{ url_for('static', filename='img/ppu_pt.jpg') }}" width="200" height="230" alt="PPU_PT">
+                        <div class="card-body">
+                            <p class="card-text"><b>ППУ-ПТ</b> - Прибор управления и пожаротушения</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="/ppy_pt" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="catalog" src="{{ url_for('static', filename='img/pup.jpg') }}" width="200" height="230" alt="PU_P">
+                        <div class="card-body">
+                            <p class="card-text"><b>ПУ-П</b> - Прибор управления &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="/pyp" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="catalog" src="{{ url_for('static', filename='img/ppkp.jpg') }}" width="200" height="230" alt="PPKP">
+                        <div class="card-body">
+                            <p class="card-text"><b>ППКП-П</b> - Прибор расширения &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="/ppkp" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="catalog" src="{{ url_for('static', filename='img/brvu.jpg') }}" width="200" height="230" alt="BRVU">
+                        <div class="card-body">
+                            <p class="card-text"><b>БРВУ</b> - Блок реле внешних устройств &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="/brvu" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="catalog" src="{{ url_for('static', filename='img/bdu.jpg') }}" width="200" height="230" alt="BDU">
+                        <div class="card-body">
+                            <p class="card-text"><b>БДУ</b> - Блок дистанционного управления &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="/bdu" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="catalog" src="{{ url_for('static', filename='img/brit.jpg') }}" width="200" height="230" alt="BRIT">
+                        <div class="card-body">
+                            <p class="card-text"><b>БРИТ</b> - Блок расширения и индикации тушения</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="/brit" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="catalog ads" src="{{ url_for('static', filename='img/ads.jpg') }}" width="220" height="150" alt="ADS">
+                        <div class="card-body">
+                            <p class="card-text"><b>АДС</b> - Блок адаптера связи &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="catalog" src="{{ url_for('static', filename='img/dvp.jpg') }}" width="200" height="230" alt="DVP">
+                        <div class="card-body">
+                            <p class="card-text"><b>ДВП</b> - Дополнительный выносной прибор &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="/dvp" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="catalog" src="{{ url_for('static', filename='img/piu.jpg') }}" width="200" height="230" alt="PIU">
+                        <div class="card-body">
+                            <p class="card-text"><b>ПУИ</b> - Панель управления и индикации &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="/piu" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+{% endblock %}

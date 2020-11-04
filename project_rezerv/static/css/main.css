@@ -1,0 +1,166 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.my_container{
+    width: 100%;
+    margin: 0;
+}
+
+.main_picture{
+    width: 100%;
+    height: 720px;
+    background: url("../img/main1.png") no-repeat;
+    background-size: 100%;
+}
+
+.header_home_img{
+    width: 100%;
+    height: 750px;
+    background: url("../img/main1.png") no-repeat;
+    background-size: 100%;
+}
+
+.header{
+    width: 100%;
+    height: 120px;
+    background: url("../img/header.png") no-repeat;
+    background-size: 100%;
+}
+
+.header_menu{
+    height: 120px;
+    border-bottom: 1px solid #676767;
+}
+
+.header_logo_my{
+    display: inline-block;
+    margin: 0;
+    width: 80px;
+    height: 80px;
+    margin-left: 123px;
+    margin-top: 10px;
+}
+
+.header_navs{
+    display: inline-block;
+    width: 800px !important;
+    margin-left: 500px;
+    vertical-align: top;
+    margin-top: 42.5px;
+}
+
+.nav-item{
+    padding-right: 20px;
+}
+
+.nav-item a{
+    color: white !important;
+    font-family: Myriad Pro, sans-serif;
+    font-size: 20px;
+    padding: 0px;
+}
+
+.nav-item:nth-child(6){
+    padding-right: 0px;
+}
+
+.my_carousel{
+    margin-top: 20px;
+    position: relative;
+    height: 400px;
+}
+
+.carousel_img{
+    height: 350px !important;
+    width: 300px !important;
+    margin-left: -14%;
+    padding-left: 0;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+}
+
+.catalog{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.card{
+    height: 385px;
+}
+
+
+.register{
+    margin-top: 30px;
+}
+
+.login{
+    margin-top: 30px;
+}
+
+.ads{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.a_color{
+    padding-right: 0px !important;
+}
+
+.a_color a{
+    color: grey !important;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.jumbotron{
+    background-color: white !important;
+}
+
+.tab-content{
+    margin-top: 10px;
+}
+
+.leftimg{
+    float: left;
+    margin: 7px 7px 7px 0;
+}
+
+.colortext{
+    color: red;
+}
+
+.info_partner{
+    margin-top: 80px;
+}
+
+.home_page_bars{
+    margin-top: 20px;
+}
+
+.main_menu .active{
+    background-color: #175D94 !important;
+}
+
+.main_menu{
+    width: 10% !important;
+}
+
+.main_menu_text{
+    width: 70% !important;
+    margin-top: 0px !important;
+}
+
+.zagolovok1{
+    width: 100%;
+}
+
+.zagolovok2{
+    width: 100%;
+}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title%}
+    {{title}}
+{% endblock %}
+
+
+{% block content%}
+    <section class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img class="" src="{{ url_for('static', filename='img/dvp.jpg') }}" width="470" height="530" alt="BDU">
+                </div>
+                <div class="col">
+                    <ul class="nav nav-tabs">
+                        <li class="a_color nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#description">Описание</a>
+                        </li>
+                        <li class="a_color nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#characteristics" >Характеристики</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="description">
+                            <h2 class="h4 mb-3">Дополнительный выносной прибор (ДВП)</h2>
+                            <p>
+                                Дополнительный выносной прибор (ДВП) предназначен для дублированния информационных сообщений прибора ПУ.
+                                Два режим подключения ДВП: к каналу связи для внутрисистемного обмена (RS485 A1/B1 A2/B2) и к
+                                канал связи для межсистемного обмена (RS485 A3/B3). Второй режим позволяет отображать на ДВП состояние
+                                до 4-х систем, подключенных к шине межсистемного обмена (RS485 A3/B3). К прибору ПУ может быть подключено
+                                до 8 приборов ДВП.
+
+                                <p>
+                                    <a href="/OmegaSystem#Прибор ДВП">Детальнее про прибор</a>
+                                </p>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="characteristics">
+                            <p>
+                                <h2 class="h4 mb-3">Технические характеристики:</h2>
+                                Напряжение питания - 12В, 0.2А.<br>
+                                Ток потребления в дежурном режиме - не более 15 мА + 3 мА на каждый включенный индикатор.<br>
+                                Индикация:<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;жидкокристалический индикатор (ЖКИ) 4 строки по 20 символов;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;световое табло <ПОЖАР> (красный);<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;светодиодный индикатор <Передача ПЦН> (красный);<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;светодиодный индикатор <Неисправность> (желтый);<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;светодиодный индикатор <Сист.ошибка> (желтый);<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;светодиодный индикатор <Отключения> (желтый);<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;светодиодный индикатор <Диагностика> (желтый);<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;светодиодный индикатор <Откл./Неиспр.ПЦН> (желтый);<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;светодиодный индикатор <Откл./Неиспр.Оповещения> (желтый);<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;светодиодный индикатор <Задержка выходов> (желтый);<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;светодиодный индикатор <Питание> (зеленый).<br>
+                                Выходы: <br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;выход K1 <Передача ПЦН> - нормально разомкнутый контакт 30В, 0.3А;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;выход K2 <Оповещение> - нормально разомкнутый контакт 30В, 0.3А;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;выход K3 <Общий отказ>- нормально разомкнутый контакт 30В, 0.3А;<br>
+                                Внешняя коммуникация:<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;внутрисистемный канал связи - основной: RS485 A1/B1, резервный: RS485 A2/B2;<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;межсистемный канал связи - RS485 A3/B3;<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;канал связи с внешними устройствами - RS485 A4/B4;<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;технологический канал связи - USB 2.0, кардридер SD/SDHC- карточек.<br>
+                                Габаритные размеры в мм (Ш х В х Г) - 235 х 275 х 80.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

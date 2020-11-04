@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title%}
+    {{title}}
+{% endblock %}
+
+
+{% block content%}
+    <section class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img class="" src="{{ url_for('static', filename='img/bdu.jpg') }}" width="470" height="530" alt="BDU">
+                </div>
+                <div class="col">
+                    <ul class="nav nav-tabs">
+                        <li class="a_color nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#description">Описание</a>
+                        </li>
+                        <li class="a_color nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#characteristics" >Характеристики</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="description">
+                            <h2 class="h4 mb-3">Блок дистанционного управления (БДУ)</h2>
+                            <p>
+                                Предназначен для организации одного направления пожаротушения под управлением прибора ПУ/ПУПТ.
+                                БДУ содержит 5 нормально разомкнутых контролируемых выходов (контактов реле) с параметрами =30В 4А
+                                для управления техническими средствами пожаротушения, 3 входа для подключения кнопок ПУСК, СТОП,
+                                РУЧНОЙ, вход ПОДАЧА ОТВ, вход УТЕЧКА ОТВ и вход БЛОКИРОВКА. Прибор БДУ имеет резервированный
+                                канал связи для внутрисистемного обмена (RS485 A1/B1 A2/B2).К прибору ПУ может быть подключено
+                                до 8 приборов БДУ.
+
+                                <p>
+                                    <a href="/OmegaSystem#Прибор БДУ">Детальнее про прибор</a>
+                                </p>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="characteristics">
+                            <p>
+                                <h2 class="h4 mb-3">Технические характеристики:</h2>
+                                Основной источник питания - ~220В.<br>
+                                Потребляемая мощность - не более 30Вт.<br>
+                                Резервный источник питания - аккумулятор 12В, 2.2А/ч.<br>
+                                Выходы:<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;контролирумые выходы/реле - 5 нормально разомкнутых контактов 30В, 4А;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;питание устройств запуска, внешних устройств - 12В, 1.0A;<br>
+                                Входы:<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;6 входов для подключения внешних датчиков и кнопок управления;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;1 вход для изменения логики входа ПОДАЧА ОТВ при помощи джампера;<br>
+                                <img class="leftimg" src="{{ url_for('static', filename='img/bdu_podkl.png') }}" alt="jamper">
+                                <br>Установка джампера в положение показанное зеленым цветом - нормально замкнутый вход.<br>
+                                Установка джампера в положение показанное красным цветом - нормально разомкнутый вход.<br>
+                                <br>Внешняя коммуникация: <br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;внутрисистемный канал связи - основной: RS485 A1/B1, резервный: RS485 A2/B2.<br>
+                                Габаритный размер в мм (Ш х В х Г) - 235 х 275 х 80.<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

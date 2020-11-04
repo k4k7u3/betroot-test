@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title%}
+    {{title}}
+{% endblock %}
+
+{% block content%}
+    <div class="login container center-block text-center">
+        <h1>Войти</h1>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=32)}}
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class="">
+                   {% if 'Неверное имя' in messages %}
+                        <span style="color: red;">{{ 'Неверное имя' }}</span>
+                    {% endif %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </p>
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=32)}}
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class="">
+                   {% if 'Неверный пароль' in messages %}
+                        <span style="color: red;">{{ 'Неверный пароль' }}</span>
+                    {% endif %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </p>
+            <p>
+                {{ form.remember_me() }}
+                {{ form.remember_me.label }}
+            </p>
+            <p>
+                {{ form.submit() }}
+            </p>
+            <a class="" href="/register">Регистрация</a>
+        </form>
+    </div>
+{% endblock %}

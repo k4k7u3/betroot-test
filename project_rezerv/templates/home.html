@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>{% block title %}{{title}}{% endblock %}</title>
+</head>
+<body>
+    <div class="header_home_img">
+        <div class="header_home">
+            <div class="my_header">
+                <div class="header_menu">
+                    <div class="header_logo_my">
+                        <a href="/"><img class="header_logo_my" src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo"></a>
+                    </div>
+
+                    <div class="header_navs">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="" href="/">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="" href="/products">Продукция</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="" href="/">О Компании</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="" href="{{ url_for('static', filename='pdf/price.pdf') }}">Цены</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="" href="/contacts">Контакты</a>
+                            </li>
+                            <li class="nav-item">
+                                {% if current_user.is_anonymous %}
+                                    <a class="" href="/login">Войти</a>
+                                {% else %}
+                                    <a class="p-2 text-blue" href="">{{current_user.name}}</a>
+                                    <a class="" href="/logout">Выйти</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+
+        </div>
+    </div>
+
+
+    <div class="container-fluid my_carousel">
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <div id="carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner row justify-content-md-center">
+                        <div class="carousel-item active">
+                            <a href="/ppy_pt"><img class="img-fluid carousel_img" src="{{ url_for('static', filename='img/ppu_pt.jpg') }}" alt="PPU_PT" height="400" width="300"></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="/pyp"><img class="img-fluid carousel_img" src="{{ url_for('static', filename='img/pup.jpg') }}" alt="PU_P" height="400" width="300"></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="/ppkp"><img class="img-fluid carousel_img" src="{{ url_for('static', filename='img/ppkp.jpg') }}" alt="PPKP" height="400" width="300"></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="/brvu"><img class="img-fluid carousel_img" src="{{ url_for('static', filename='img/brvu.jpg') }}" alt="BRVU" height="400" width="300"></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="/bdu"><img class="img-fluid carousel_img" src="{{ url_for('static', filename='img/bdu.jpg') }}" alt="BDU" height="400" width="300"></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="/brit"><img class="img-fluid carousel_img" src="{{ url_for('static', filename='img/brit.jpg') }}" alt="BRIT" height="400" width="300"></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="/dvp"><img class="img-fluid carousel_img" src="{{ url_for('static', filename='img/dvp.jpg') }}" alt="DVP" height="400" width="300"></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="/piu"><img class="img-fluid carousel_img" src="{{ url_for('static', filename='img/piu.jpg') }}" alt="PIU" height="400" width="300"></a>
+                        </div>
+                    </div>
+                    <!-- Элементы управления -->
+                    <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Предыдущий</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Следующий</span>
+                    </a>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+    </div>
+
+    <div class="container home_page_bars">
+        <div class="row">
+            <div class="col-sm-4 main_menu nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills1" role="tab" aria-controls="v-pills1" aria-selected="true">СИСТЕМЫ ПОЖАРНОЙ СИГНАЛИЗАЦИИ</a>
+                <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills2" role="tab" aria-controls="v-pills2" aria-selected="false">СТРУКТУРА И ПОСТРОЕНИЕ ПОЖАРНОЙ СИГНАЛИЗАЦИИ</a>
+                <a class="nav-link" id="v-pills-3-tab" data-toggle="pill" href="#v-pills3" role="tab" aria-controls="v-pills3" aria-selected="false">УПРАВЛЕНИЕ МОЖАРОТУШЕНИЕМ</a>
+                <a class="nav-link" id="v-pills-4-tab" data-toggle="pill" href="#v-pills4" role="tab" aria-controls="v-pills3" aria-selected="false">СОСТАВ И ХАРАКТЕРИСТИКИ СИСТЕМЫ</a>
+                <a class="nav-link" id="v-pills-5-tab" data-toggle="pill" href="#v-pills5" role="tab" aria-controls="v-pills3" aria-selected="false">СХЕМЫ ПОДКЛЮЧЕНИЯ</a>
+                <a class="nav-link" id="v-pills-6-tab" data-toggle="pill" href="#v-pills6" role="tab" aria-controls="v-pills3" aria-selected="false">ПРОГРАМНОЕ ОБЕСПЕЧЕНИЕ</a>
+                <a class="nav-link" id="v-pills-7-tab" data-toggle="pill" href="#v-pills7" role="tab" aria-controls="v-pills3" aria-selected="false">ДОКУМЕНТАЦИЯ</a>
+                <a class="nav-link" id="v-pills-8-tab" data-toggle="pill" href="#v-pills8" role="tab" aria-controls="v-pills3" aria-selected="false">БИС-Р</a>
+                <a class="nav-link" id="v-pills-9-tab" data-toggle="pill" href="#v-pills9" role="tab" aria-controls="v-pills3" aria-selected="false">БИС-РМ</a>
+            </div>
+            <div class="col-sm-8 main_menu_text tab-content" >
+                <div class="tab-pane fade show active" id="v-pills1" role="tabpanel" aria-labelledby="v-pills-1-tab">
+                    <img class="zagolovok1" src="{{ url_for('static', filename='img/ASPB.png') }}" alt="">
+                    <p>
+                       Предназначена для сигнализации и передачи сообщений о возникновении пожара по признакам появления дыма,
+                        пламени, повышения температуры. Технические и функциональные возможности системы «ОМЕГА» позволяют создавать
+                        высоконадежные, распределенные и легко масштабируемые системы пожарной сигнализации объемом от единиц до нескольких
+                        тысяч извещателей.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Полностью отвечает требованиям национальных стандартов ДСТУ EN 54 к системам пожарной сигнализации.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Отвечают требованиям ДСТУ 4469 для компонентов управления пожаротушением.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Позволяет управлять пожарной автоматикой и системами дымоудаления и оповещения.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Имеет взрывозащищенное исполнение категории 1ExibIIBT5.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Позволяет с ПЭВМ вести локальный и удаленный мониторинг защищаемого объекта.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Имеет действующие  сертификаты   УкрСЕПРО на соответствие ДСТУ EN 54  и  ДСТУ ISO 9001:2009.<br>
+                    </p>
+                    <img class="zagolovok2" src="{{ url_for('static', filename='img/BISR.png') }}" alt="">
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Система  «БИС-Р»  предназначена  для  контроля расхода топлива и других эксплуатационных
+                        параметров тепловозов  с дизель-генераторной силовой установкой.<br>
+                        Как  показало практическое применение системы экономия топлива после установки, в некоторых  случаях достигала 30-40%.
+                        В настоящее время системами «БИС-Р» оснащено более  1000 тепловозов «Укзалiзницi» и других  промышленных предприятий.
+                    </p>
+                    <h2 class="h4 mb-3">Наши принципы:</h2>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Полное удовлетворение ожидаемых требований потребителей в области  адресных пожарных сигнализаций и систем измерения уровня.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Постоянное улучшение качества продукции и процессов производства.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Взаимовыгодные отношения с Заказчиками и Поставщиками строятся на долгосрочной основе.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Бесплатное обучение и техническая поддержка потребителей продукции, проектировщиков, монтажников и обслуживающего персонала.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Обеспечение стабильности качества электронного оборудования, а также качества на этапах проектирования, производства, контроля, испытаниях и обслуживания.<br>
+                    </p>
+                    <p>
+                        Опираясь на многолетний опыт и партнерство трех коллективов высококвалифицированных специалистов,
+                        стремления к постоянному улучшению качества продукции и повышению уровня профессионализма, мы предлагаем качественную продукцию,  передовые технические решения  и  техническую поддержку.
+                    </p>
+                </div>
+                <div class="tab-pane fade" id="v-pills2" role="tabpanel" aria-labelledby="v-pills-2-tab">
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Система пожарной сигнализации, построенная на основе компонентов «Омега», базируется на приборе ПУ-П.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;<b><a href="/pyp">ПУ-П</a></b> – управляющая централь системы,  выполняющая  все функции пожарных  приемно-контрольных приборов (ППКП).
+                        В  конструкцию прибора ПУ-П также входят источники  основного и резервного питания, а также встроенный аккумулятор 7А/ч.
+                        В зависимости от модификации, к  ПУ-П  можно подключить 8 (ЕКВН.425533.012)  или 4 (ЕКВН.425533.012-01) петель с извещателями,
+                        в каждую петлю можно подключать до 60 адресных устройств. Прибор ПУ-П  имеет (в завимости от модификации) 8 или 4  выходов
+                        на внешние устройства (реле). Прибор ПУ-П полностью соответствует  требованиям  с ДСТУ EN 54-2 и ДСТУ EN 54-4.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Таким образом  на базе прибора ПУ-П можно построить законченную систему,  дополнив его 480-ю  или 240 извещателями.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;При необходимости расширения системы в части количества извещателей,  используются приборы расширения <b><a href="/ppkp">ППКП</a></b>.
+                        Эти приборы подключаются к ПУ-П по двум каналам (основному и резервному) с последовательным протоколом связи RS-485
+                        и позволяют подключить 480 или 240 извещателей в зависимости от исполнения ЕКВН.425533.014 и ЕКВН.425533.014-01.
+                        Всего к прибору ПУ-П может быть подключено до 8-ми приборов ППКП-П. Прибор ППКП-П, также как и прибор ПУ-П,
+                        имеет  источник  основного и резервного питания, 8 или 4 реле,  а также встроенный аккумулятор 7 А/ч и отвечает   в
+                        части требований к извещателям и электропитанию  ДСТУ EN 54-2 и ДСТУ EN 54-4.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;При необходимости расширения системы в части количества реле, используются приборы <b><a href="/brvu">БРВУ</a></b>.
+                        Эти приборы выполняют требования  ДСТУ EN 54-18 в части передачи воздействий на внешние устройства и
+                        требования ДСТУ EN 54-4  к электропитанию. БРВУ имеет 8 программируемых реле, которые срабатывают  по  командам
+                        прибора ПУ-П  и  подключается к системе по тем же каналам RS-485, что и ППКП-П. К прибору ПУ-П  может быть
+                        подключено до 8-ми приборов БРВУ.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Приборы БРВУ выпускаются в двух модификациях:<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;1- ЕКВН.425459.011 имеет контакты реле предназначенные для коммутации цепей с постоянным напряжением до 30В и током до 7А;<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;2 - ЕКВН.425459.011-01 имеет контакты реле, предназначенные для коммутации цепей с переменным напряжением 220В, 50Гц и током до 5А.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;В конструкцию прибора БРВУ также входит источник  основного и резервного питания и  аккумулятор 2,2 А/ч.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Для дублирования визуальной и звуковой информации ПУ-П и передачи ее на дополнительные посты наблюдения, система может быть дополнена приборами <b><a href="/dvp">ДВП</a></b>.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Эти приборы  подключаются к тем же линиям связи RS-485, что и ППКП-П и БРВУ.
+                        Прибор имеет специализированные выходы ОБЩИЙ ПОЖАР и ОБЩИЙ ОТКАЗ для   соединения с   «устройствами  передачи  сигналов  на ПЦН» сторонних производителей,
+                        кроме этого имеется отдельный выход с собственным  протоколом для связи с устройствами передачи отдельных производителей,
+                        например изделия «Грифон», производства ЧП «Аргус информ».<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Общая структурная схема системы приведена на <b><a href="{{ url_for('static', filename='pdf/ris.pdf') }}">РИС</a></b>.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Более подробно работа системы описана в <b><a href="{{ url_for('static', filename='doc/re.doc') }}" download>Руководстве по эксплуатации</a></b> и <b><a href="{{ url_for('static', filename='doc/Opisanie.chm') }}" download>Описание АПС "Омега"</a></b>.<br>
+                    </p>
+                </div>
+                <div class="tab-pane fade" id="v-pills3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+                    <p>&nbsp; &nbsp; &nbsp; &nbsp;На базе компонентов системы «Омега» кроме  системы пожарной сигнализации,  можно организовать управление  газовым
+                        или порошковым тушением. Для этой цели, в качестве управляющей централи используется прибор <b><a href="/ppy_pt">ППУ-ПТ</a></b> ЕКВН.425533.016.
+                        За исключением управления пожаротушением, прибор идентичен прибору <b><a href="/pyp">ПУ-П</a></b>, входящему в состав компонентов системы
+                        адресной пожарной сигнализации «Омега», и выполняет все функции ПУ-П ЕКВН.425533.012. Прибор ППУ-ПТ соответствует
+                        требованиям ДСТУ EN 54-2 к  ППКП,  по управлению  газовым или  порошковым пожаротушением - соответствует требованиями
+                        ДСТУ 4469-1:2006, источник электропитания прибора соответствует требованиям ДСТУ EN-54-4, в качестве резервной сети
+                        используется встроенный в прибор аккумулятор. Все компоненты системы «Омега», которые подключаются к прибору ПУ-П,
+                        также можно подключить и к ППУ-ПТ.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Для управления 1-2 направлениями пожаротушения, кроме прибора ППУ-ПТ, необходимо использовать блоки
+                        <b><a href="/bdu">БДУ</a></b> ЕКВН.425459.014, кнопки «Запуск пожаротушения», «Ручной режим», «Аварийный останов» (КА-01 или КА-21,
+                        производства ТОВ «Проект АО»). При количестве направлений тушения от 3 до  8 кроме перечисленного
+                        необходимо использовать блоки БРИТ(ранее назывался БДУ4) ЕКВН.425459.014-01.<br>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Блоки БДУ и БДУ4 соответствует требованиями ДСТУ 4469-1:2006 и подключаются к прибору ППУ-ПТ по тем же двум каналам
+                        с последовательным протоколом связи RS-485, что и остальные приборы системы (ППКП-П, БРВУ и т.д.).
+                        Блок БДУ имеет встроенный источник основного и резервного питания и аккумулятор, электропитание соответствует
+                        требованиям ДСТУ EN-54-4. Блоку БДУ4 требуется внешнее электропитание 12В.<br>
+                    </p>
+                    <p>
+                        Организация управления тушением подробно изложена в <b><a href="{{ url_for('static', filename='doc/pasport_ppupt.doc') }}" download>Паспорте на ППУ-ПТ</a></b>.
+                    </p>
+                    <p>
+                        Структура компонентов для управления тушением на 1-2 направления показана на <b><a href="{{ url_for('static', filename='pdf/upravlenie-tusheniem-na-1-napr-2012.pdf') }} " target="_blank">Пояснительной схеме 1</a></b>.
+                    </p>
+                    <p>
+                        Организация управления тушением на 3 – 8 направлений показана на <b><a href="{{ url_for('static', filename='pdf/upravlenie-tusheniem-na-4-napr.pdf') }} " target="_blank">Пояснительной схеме 2</a></b>.
+                    </p>
+
+                </div>
+                <div class="tab-pane fade" id="v-pills4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Прибор <b><a href="/pyp">ПУ-П</a></b> ЕКВН.425533.012 – прибор управления, выполняющий все  функции  ППКП  в соответствии
+                        с  требованиями ДСТУ EN 54-2, предназначен для приема информации от восьми колец (линий) с извещателями и блоками,
+                        а также от приборов расширения  приемно-контрольных пожарных ППКП-П. Выполняет обработку  информации, отображение
+                        ее на отдельных индикаторах и алфавитно-цифровом дисплее (далее по тексту - ЖКИ-индикатор), обеспечивает
+                        передачу сигналов во внешние цепи, управляющих сообщений на блоки ППКП-П, БРВУ, БКА, БПКПА, БДУ, прибор ДВП, на ПЭВМ.
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Прибор <b><a href="/pyp">ПУ-П</a></b> ЕКВН.425533.012-01 – то же, что и прибор ПУ-П ЕКВН.425533.012, но обслуживает 4 кольца с извещателями и блоками.
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Прибор <b><a href="/ppu_pt">ППУ-ПТ</a></b> ЕКВН.425533.016  -  то же, что и ПУ-П ЕКВН.425533.012, но дополнительно  обеспечивает
+                        управление двумя направлениями порошкового или газового пожаротушения. Имеет возможность расширения направлений
+                        - до 8. Подробно работа прибора описана в документе <b><a href="{{ url_for('static', filename='doc/pasport_ppupt.doc') }}" download> «Система «Омега». Приборы управления тушением.
+                        Руководство по эксплуатации». </a></b>
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Прибор <b><a href="/dvp">ДВП</a></b> ЕКВН.425533.012-02 – дополнительный выносной прибор, предназначен для дублирования всей информации, выводимой на ПУ-П,
+                        имеет ограниченные управляющие и сервисные функции. Модификация прибора ДВП может выводить информацию с нескольких<br> ПУ-П.
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Прибор <b><a href="/ppkp">ППКП-П</a></b> ЕКВН.425533.014 – прибор расширения, выполняющий все функции ППКП в соответствии с ДСТУ EN 54-2,
+                        в части работы с извещателями. Предназначен для приема информации от 8 колец (линий) с извещателями и блоками,
+                        а также передачи информации о событиях на управляющий прибор ПУ-П, а также  выдачи управляющих сигналов во внешние цепи.
+                        К  прибору  ПУ-П (ППУ-ПТ) может быть подключено до 8-ми приборов расширения <br>ППКП-П.
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Прибор <b><a href="/ppkp">ППКП-П</a></b> ЕКВН.425533.014-01 - то же, что и прибор ППКП-П ЕКВН.425533.014, но обслуживает 4 кольца с извещателями и блоками.
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Блок <b><a href="#">БИЗ</a></b> ЕКВН.436531.001 – блок искрозащиты. Предназначен для обеспечения совместного включения в линию сигнализации извещателей обычного и взрывозащищенного исполнений.
+                        Подробное описание приведено в разделе 2.5 «Описание взрывозащищенности» настоящего РЭ.
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Блок <b><a href="/brvu">БРВУ</a></b> ЕКВН.425459.011 – блок реле внешних устройств, предназначен для передачи управляющих сигналов во внешние цепи.
+                        Содержит 8 реле и управляется  по линии связи RS-485 командами прибора  ПУ-П.
+                        К  прибору  ПУ-П (ППУ-ПТ) может быть подключено до 8-ми блоков БРВУ.
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Блок <b><a href="/brvu">БРВУ</a></b> ЕКВН.425459.011-01 – то же, что и блок БРВУ ЕКВН.425459.011, но содержит реле с контактами, допускающими коммутацию напряжения 220 В, 50 Гц.
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Блок адаптера связи <b><a href="/#">АДС</a></b> ЕКВН.469.545.001 предназначен для обеспечения удаленной связи (до 1000 м) прибора ПУ-П или ППУ-ПТ с ПЭВМ.
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Подробно работа блоков ПУ-П, ППКП-П, БРВУ, ДВП, БИЗ, АДС описана в документе
+                        <b><a href="{{ url_for('static', filename='doc/re.doc') }}" download>«Система адресной пожарной сигнализации «Омега». Руководство по эксплуатации» </a></b>,
+                        а также <b><a href="{{ url_for('static', filename='doc/rukovodstvo.chm') }}" download>Руководстве по работе и программированию</a></b>.
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Блок <b><a href="/bdu">БДУ</a></b> ЕКВН.425459.014 – блок дистанционного управления для ручного запуска устройств пожаротушения. Применяется совместно с прибором ППУ-ПТ.
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp; &nbsp;Блок БДУ4 – применяется  совместно с прибором ППУ-ПТ  для управления 4-мя направлениями тушения.
+                        Подробно работа блоков БДУ и БДУ4 описана в <b><a href="{{ url_for('static', filename='doc/pasport_ppupt.doc') }}" download>«Система «Омега». Приборы управления тушением. Инструкция по эксплуатации»</a></b>.
+                    </p>
+                </div>
+                <div class="tab-pane fade" id="v-pills5" role="tabpanel" aria-labelledby="v-pills-5-tab">
+                    <p>
+                        <b><a href="{{ url_for('static', filename='zip/shemy.zip') }}" download> Схемы соединений OLD (2007-2011, система серии Е)</a></b><br>
+                        <b><a href="{{ url_for('static', filename='pdf/ads.pdf') }} " target="_blank"> АДС </a></b><br>
+                        <b><a href="{{ url_for('static', filename='pdf/biz.pdf') }} " target="_blank"> БИЗ </a></b><br>
+                        <b><a href="{{ url_for('static', filename='pdf/aps-omega.pdf') }} " target="_blank"> Схема соединений АПС Омега </a></b><br>
+                        <b><a href="{{ url_for('static', filename='pdf/aps-omega-pt.pdf') }} " target="_blank"> Схема соединений АПС Омега ПТ </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/aps-omega.zip') }}" download> Схема соединений АПС Омега.dwg </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/aps-omega-pt.zip') }}" download> Схема соединений АПС Омега ПТ.dwg </a></b><br>
+                    </p>
+                </div>
+                <div class="tab-pane fade" id="v-pills6" role="tabpanel" aria-labelledby="v-pills-6-tab">
+                    <p>
+                        <b><a href="{{ url_for('static', filename='zip/omega-config.zip') }}" download> OmegaConfig </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/omega-config-old.zip') }}" download> OmegaConfigOld (до 2011, приборы серии Е) </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/omega-monitor-demo.zip') }}" download> OmegaMonitorDemo </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/omega-service.zip') }}" download> OmegaService </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/podkluchenie-pk.zip') }}" download> Подключение к ПК </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/fail_jaz_nastroek.zip') }}" download> Файлы языковых настроек </a></b><br>
+                    </p>
+                </div>
+                <div class="tab-pane fade" id="v-pills7" role="tabpanel" aria-labelledby="v-pills-7-tab">
+                    <p>
+                        <b><a href="{{ url_for('static', filename='zip/gabarity.zip') }}" download> Габаритные размеры приборов </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/dopolnenia.zip') }}" download> Дополнения </a></b><br>
+                        <b><a href="http://www.proektao.com.ua/"> Паспорта извещателей и блоков </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/ppu-pt.zip') }}" download> ППУ-ПТ(2017-2020, серия H) </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/ppu-pt-old.zip') }}" download> ППУ-ПТ Old (2007 - 2016, серии Е, F) </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/re-old.zip') }}" download> РЭ Old (2007 - 2016, серии Е, F) </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/sertifikaty.zip') }}" download> Сертификаты </a></b><br>
+                        <b><a href="{{ url_for('static', filename='zip/sertifikat_ISO.zip') }}" download> Сертификат ISO </a></b><br>
+                        <b><a href="{{ url_for('static', filename='doc/РЭ2019.doc') }}" download> РЭ(2019, серия H) </a></b><br>
+                        <b><a href="{{ url_for('static', filename='doc/Opisanie.chm') }}" download> Описание АПС Омега </a></b><br>
+                        <b><a href="{{ url_for('static', filename='doc/pasport_piu.doc') }}" download> Паспорт ПИУ </a></b><br>
+                        <b><a href="{{ url_for('static', filename='pdf/podkl_piu.pdf') }} " target="_blank"> Подключение ПИУ </a></b><br>
+                    </p>
+                </div>
+                <div class="tab-pane fade" id="v-pills8" role="tabpanel" aria-labelledby="v-pills-7-tab">
+                    <p>
+                        Всю необходимую информацию можно скачать <b><a href="{{ url_for('static', filename='doc/bis-r.doc') }}" download> здесь </a></b>.
+                    </p>
+                </div>
+                <div class="tab-pane fade" id="v-pills9" role="tabpanel" aria-labelledby="v-pills-7-tab">
+                    <p>
+                        Страница в разработке.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+            <div class="col-12 col-md">
+              <img class="mb-2" src="{{ url_for('static', filename='img/logo.png') }}" alt="" width="24" height="24">
+              <small class="d-block mb-3 text-muted">©2020</small>
+            </div>
+            <div class="col-6 col-md">
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="/">Главная</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="/products">Продукция</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="/contacts">Контанты</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+</body>
+</html>

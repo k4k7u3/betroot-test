@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title%}
+    {{title}}
+{% endblock %}
+
+
+{% block content%}
+    <section class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img class="" src="{{ url_for('static', filename='img/ppu_pt.jpg') }}" width="500" height="530" alt="PPU_PT">
+                </div>
+                <div class="col">
+                    <ul class="nav nav-tabs">
+                        <li class="a_color nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#description">Описание</a>
+                        </li>
+                        <li class="a_color nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#characteristics" >Характеристики</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="description">
+                            <h2 class="h4 mb-3">ППУ-ПТ</h2>
+                            <p>
+                                Прибор ППУ-ПТ выполняет все функции, что и ПУ-П <a href="/pyp">(ссылка)</a>,
+                                и дополнительно обеспечивает управление двумя направлениями порошкового или газового пожаротушения.
+                                Имеет возможность расширения направлений - до 8.
+                                <p>
+                                    <a href="/OmegaSystem#Прибор ПУ">Детальнее про прибор</a>
+                                </p>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="characteristics">
+                            <p>
+                                <h2 class="h4 mb-3">Технические характеристики:</h2>
+                                Основной источник питания - ~220 В.<br>
+                                Потребляемая мощность - не более 30 Вт.<br>
+                                Резервный источник питания - аккумулятор 12 В, 7 А/ч<br>
+                                Выходы:<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;для подключения адресных извещателей - 8 линий/колец по 60 извещателей<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;контролирумый выход К1"Передача ПЦН" - нормально разомкнутых контакт 30В, 5А<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;контролирумый выход К2"Оповещение" - нормально разомкнутых контакт 30В, 5А<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;контролирумые выходы/реле - 6 нормально разомкнутых контактов 30В, 5 А<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;выход "Общий отказ" - нормально разомкнутых контакт 30В, 0,25 А<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;питание внешних устройств - 12 В, 0.5A<br>
+                                Внешняя коммуникация:<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;внутрисистемный канал связи - основной: RS485 A1/B1, резервный: RS485 A2/B2.<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;межсистемный канал связи - RS485 A3/B3<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;канал связи с внешними устройствами - RS485 A4/B4<br>
+                                   &nbsp; &nbsp; &nbsp; &nbsp;технологический канал связи - USB 2.0, кардридер SD/SDHC- карточек<br>
+                                Габаритный размер в мм (Ш х В х Г) - 300 х 350 х 100<br>
+
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

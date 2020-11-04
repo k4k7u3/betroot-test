@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title%}
+    {{title}}
+{% endblock %}
+
+
+{% block content%}
+    <section class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img class="" src="{{ url_for('static', filename='img/piu.jpg') }}" width="470" height="530" alt="BDU">
+                </div>
+                <div class="col">
+                    <ul class="nav nav-tabs">
+                        <li class="a_color nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#description">Описание</a>
+                        </li>
+                        <li class="a_color nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#characteristics" >Характеристики</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="description">
+                            <h2 class="h4 mb-3">Прибор индикации и управления (ПИУ)</h2>
+                            <p>
+                                Прибор индикации и управления (ПИУ) предназначен для отображения событий/состояния
+                                системы «ОМЕГА» на единичных светодиодных индикаторах, а также для управления
+                                техническими средствами при помощи кнопок.
+
+                                <p>
+                                    <a href="/OmegaSystem#Прибор ПИУ">Детальнее про прибор</a>
+                                </p>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="characteristics">
+                            <p>
+                                <h2 class="h4 mb-3">Технические характеристики:</h2>
+                                Напряжение питания - 12В, 0.1А.<br>
+                                Ток потребления в дежурном режиме - не более 10 мА + 3 мА на каждый включенный индикатор.<br>
+                                Количество светодиодных индикаторов - 24/16/8 шт. + индикатор питания.<br>
+                                Количество кнопок управления - 24/16/8 шт. Примечание: количество кнопок всегда соответствует количеству светодиодных индикаторов.<br>
+                                Коммуникация - внутриситемный канал связи RS485: A1/B1 - основной, A2/B2 - резервный .<br>
+                                Габаритные размеры в мм (Ш х В х Г) - 300 х 350 х 100.<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
