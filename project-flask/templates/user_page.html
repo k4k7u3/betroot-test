@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title%}
+    User Page
+{% endblock %}
+
+{% block content%}
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-left">
+      <h2 class="container">Your books</h2>
+        {% for post in posts %}
+            <div class="alert alert-info">
+                <img src="{{ post[8] }}">
+                <h2>Title: {{ post[2] }}</h2>
+                <p class="lead"><b>Authors:</b> {{ post[3] }}</p>
+                <p class="lead"><b>Published Date:</b> {{ post[4] }}</p>
+                <p class="lead"><b>Description:</b> {{ post[5] }}</p>
+                <p class="lead"><b>My review:</b> {{ post[6] }}</p>
+                <p class="lead"><b>Date added:</b> {{ post[7] }}</p>
+                <a href="/user/{{ post[1]}}/{{ post[0]}}" class="btn btn-warning">Change</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

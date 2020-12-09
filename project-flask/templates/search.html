@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title%}
+    Search book
+{% endblock %}
+
+{% block content%}
+    <h2>Search book</h2>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.ISBN.label }}<br>
+            {{ form.ISBN(size=32) }}
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="container text-center">
+                {% if 'ISBN code must consist of numbers' in messages %}
+                    <span style="color: red;">{{ 'ISBN code must consist of numbers' }}</span>
+                {% endif %}
+                {% if 'ISBN code must consist of 13 numbers' in messages %}
+                    <span style="color: red;">{{ 'ISBN code must consist of 13 numbers' }}</span>
+                {% endif %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title%}
+    Result search
+{% endblock %}
+
+{% block content%}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-left">
+  <h2 class="container">Results:</h2>
+    <div class="alert alert-info">
+        {% if articles['totalItems'] == 0 %}
+            <h2>Ничего не найдено</h2>
+            <a href="/search" class="btn btn-warning">Try again</a>
+        {% else %}
+            {% if 'items' not in img_articles %}
+                <img src="">
+            {% else %}
+                <img src="{{ img_articles['items'][0]['link'] }}" alt="{{ img_articles['items'][0]['title'] }}">
+            {% endif %}
+            <h2>Title: {{ articles['items'][0]['volumeInfo']['title'] }}</h2>
+            <p class="lead"><b>Authors:</b> {{ articles['items'][0]['volumeInfo']['authors'] }}</p>
+            <p class="lead"><b>Published Date:</b> {{ articles['items'][0]['volumeInfo']['publishedDate'] }}</p>
+            <p class="lead"><b>Description:</b> {{ articles['items'][0]['volumeInfo']['description'] }}</p>
+            <a href="/add" class="btn btn-warning">Add me</a> <a href="/search" class="btn btn-warning">Search another</a>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}
